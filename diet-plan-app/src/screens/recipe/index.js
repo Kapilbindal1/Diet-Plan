@@ -12,22 +12,24 @@ export const Recipe = () => {
   const userId = useSelector((state) => state.user.userData._id);
 
   useEffect(() => {
-    dispatch(
-      getRecipeData(
-        userId,
-        (res) => {
-          console.log("===>res", res);
-          if (Object.keys(res).length > 0) {
+    if (!!userId) {
+      dispatch(
+        getRecipeData(
+          userId,
+          (res) => {
+            console.log("===>res", res);
+            if (Object.keys(res).length > 0) {
+              setIsLoading(false);
+              setRecipeData(res);
+            }
+          },
+          (e) => {
             setIsLoading(false);
-            setRecipeData(res);
-          }
-        },
-        (e) => {
-          setIsLoading(false);
-          console.log("===>e", e);
-        },
-      ),
-    );
+            console.log("===>e", e);
+          },
+        ),
+      );
+    }
   }, []);
 
   return (

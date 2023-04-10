@@ -15,7 +15,6 @@ import { addUserAnswerRequest } from "../../redux/reducer/user";
 const SlickSlider = () => {
   const [value, setValue] = useState(0);
   const [answers, setAnswers] = useState({});
-  const [activeOptionIndex, setActiveOptionIndex] = useState(null);
   const [quesAnswArr, setQuesAnswArr] = useState(detail);
 
   const dispatch = useDispatch();
@@ -36,19 +35,17 @@ const SlickSlider = () => {
   const onHandleAnswers = (type, option, ansType, index1, index) => {
     setAnswers({ ...answers, [type]: option });
 
-    // setActiveOptionIndex(index);
     if (ansType === "input" || value === 5) {
       return;
     }
-    // let tempArry = [...quesAnswArr];
-    // tempArry[index1].answers[index].isSelected =
-    //   !tempArry[index1].answers[index].isSelected;
-    // console.log("===>tempArry[index1]", tempArry[index1].answers);
-    // setQuesAnswArr(tempArry);
+    let tempArry = [...quesAnswArr];
+
+    tempArry[index1].answers[index].isSelected =
+      !tempArry[index1].answers[index].isSelected;
+
+    setQuesAnswArr(tempArry);
     setValue((prev) => prev + 1);
   };
-
-  console.log("====>answers", answers);
 
   const getAlaphabet = (index) => {
     const character = "A";
@@ -113,7 +110,11 @@ const SlickSlider = () => {
                           {item.answers?.map((item2, index) => {
                             return (
                               <h6
-                                className={"options"}
+                                className={
+                                  item2.isSelected
+                                    ? "options active"
+                                    : "options"
+                                }
                                 onClick={() =>
                                   onHandleAnswers(
                                     item.type,
