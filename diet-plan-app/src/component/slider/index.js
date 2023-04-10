@@ -11,6 +11,7 @@ import logo from "../../assets/logo.svg";
 import next from "../../assets/next.svg";
 import prev from "../../assets/prev.svg";
 import { addUserAnswerRequest } from "../../redux/reducer/user";
+import { userAnswerValidateDetail } from "../../utils/validation";
 
 const SlickSlider = () => {
   const [value, setValue] = useState(0);
@@ -34,7 +35,7 @@ const SlickSlider = () => {
 
   const onHandleAnswers = (type, option, ansType, index1, index) => {
     setAnswers({ ...answers, [type]: option });
-
+    // userAnswerValidateDetail(answers);
     if (ansType === "input" || value === 5) {
       return;
     }
@@ -59,9 +60,11 @@ const SlickSlider = () => {
     setValue((prev) => prev + 1);
   };
   const handleSubmit = () => {
+    // userAnswerValidateDetail(answers);
     dispatch(addUserAnswerRequest(answers));
     navigate("/recipe");
   };
+  console.log("===>answers", answers);
   return (
     <div className="container-fluid">
       <img src={logo} alt="logo" />
