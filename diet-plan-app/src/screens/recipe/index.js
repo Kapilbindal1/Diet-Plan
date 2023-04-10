@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { getRecipeData } from "../../redux/reducer/recipe";
-import { data } from "../../utils/const";
 import Loader from "../../component/loader";
 import logo from "../../assets/logo-brown.svg";
 
@@ -12,41 +11,28 @@ export const Recipe = () => {
 
   const userId = useSelector((state) => state.user.userData._id);
 
-  //   useEffect(() => {
-  //     dispatch(
-  //       getRecipeData(
-  //         userId,
-  //         (res) => {
-  //           console.log("===>res", res);
-  //           if (Object.keys(res.dietPlan).length > 0) {
-  //             setIsLoading(false);
-  //             setRecipeData(res);
-  //           }
-  //         },
-  //         (e) => {
-  //           setIsLoading(false);
-  //           console.log("===>e", e);
-  //         },
-  //       ),
-  //     );
-  //   }, []);
-  console.log("===>recipeData", data);
+  useEffect(() => {
+    dispatch(
+      getRecipeData(
+        userId,
+        (res) => {
+          console.log("===>res", res);
+          if (Object.keys(res).length > 0) {
+            setIsLoading(false);
+            setRecipeData(res);
+          }
+        },
+        (e) => {
+          setIsLoading(false);
+          console.log("===>e", e);
+        },
+      ),
+    );
+  }, []);
+
   return (
-    // <div>
-    //   {¸¸ˀˀˀ? (
-    //     <Loader />
-    //   ) : (
-    //     <div>
-    //       {Object.keys(recipeData).length > 0 &&
-    //         Object.values(recipeData).map((meal) => {
-    //           console.log("===>meal", meal);
-    //           return <h1>{meal.breakfast}</h1>;
-    //         })}
-    //     </div>
-    //   )}
-    // </div>
-    <>
-      {false ? (
+    <React.Fragment>
+      {isLoading ? (
         <Loader />
       ) : (
         <div className="container">
@@ -59,49 +45,52 @@ export const Recipe = () => {
           </div>
           <div className="container mt-5">
             <div className="row">
-              {Object.keys(data.dietPlan).map((day) => {
-                return (
-                  <div className="col-md-4 mb-3" key={day}>
-                    <div className="diet-cards">
-                      <h3 className="days-number">{day}</h3>
-                      <p className="meals">
-                        <span className="meal-time">Breakfast:</span>{" "}
-                        <span className="meal-description">
-                          {data.dietPlan[day]?.Breakfast}
-                        </span>
-                      </p>
-                      <p className="meals">
-                        <span className="meal-time">Morning Snack:</span>{" "}
-                        <span className="meal-description">
-                          {data.dietPlan[day]?.MorningSnack}
-                        </span>
-                      </p>
-                      <p className="meals">
-                        <span className="meal-time">Lunch:</span>{" "}
-                        <span className="meal-description">
-                          {data.dietPlan[day]?.Lunch}
-                        </span>
-                      </p>
-                      <p className="meals">
-                        <span className="meal-time">Evening Snack:</span>{" "}
-                        <span className="meal-description">
-                          {data.dietPlan[day]?.EveningSnack}
-                        </span>
-                      </p>
-                      <p className="meals">
-                        <span className="meal-time">Dinner:</span>{" "}
-                        <span className="meal-description">
-                          {data.dietPlan[day]?.Dinner}
-                        </span>
-                      </p>
+              {Object.keys(recipeData).length > 0 &&
+                Object.keys(recipeData.dietPlan).map((day) => {
+                  return (
+                    <div className="col-md-4 mb-3" key={day}>
+                      <div className="diet-cards">
+                        <h3 className="days-number">
+                          {day.charAt(0).toUpperCase() + day.slice(1)}
+                        </h3>
+                        <p className="meals">
+                          <span className="meal-time">Breakfast:</span>{" "}
+                          <span className="meal-description">
+                            {recipeData.dietPlan[day].breakfast}
+                          </span>
+                        </p>
+                        <p className="meals">
+                          <span className="meal-time">Morning Snack:</span>{" "}
+                          <span className="meal-description">
+                            {recipeData.dietPlan[day].morningSnack}
+                          </span>
+                        </p>
+                        <p className="meals">
+                          <span className="meal-time">Lunch:</span>{" "}
+                          <span className="meal-description">
+                            {recipeData.dietPlan[day].lunch}
+                          </span>
+                        </p>
+                        <p className="meals">
+                          <span className="meal-time">Evening Snack:</span>{" "}
+                          <span className="meal-description">
+                            {recipeData.dietPlan[day].eveningSnack}
+                          </span>
+                        </p>
+                        <p className="meals">
+                          <span className="meal-time">Dinner:</span>{" "}
+                          <span className="meal-description">
+                            {recipeData.dietPlan[day].dinner}
+                          </span>
+                        </p>
+                      </div>
                     </div>
-                  </div>
-                );
-              })}
+                  );
+                })}
             </div>
           </div>
         </div>
       )}
-    </>
+    </React.Fragment>
   );
 };
