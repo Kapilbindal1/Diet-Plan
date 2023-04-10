@@ -1,5 +1,7 @@
 @import "bootstrap/dist/css/bootstrap.min.css";
 @import "animate.css";
+@import "./diet.scss";
+@import "./common.scss";
 html {
   scroll-behavior: smooth;
 }
@@ -90,20 +92,6 @@ body {
       margin-right: 13px;
     }
   }
-}
-
-.primary-solid {
-  background: #b07000;
-  border-radius: 5px;
-  font-family: "Inter";
-  font-style: normal;
-  font-weight: 700;
-  font-size: 16px;
-  line-height: 27px;
-  color: #ffffff;
-  width: 170px;
-  height: 46px;
-  border: unset;
 }
 .navigation {
   position: absolute;

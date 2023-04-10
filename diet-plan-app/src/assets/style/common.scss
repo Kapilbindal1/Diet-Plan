@@ -1,0 +1,30 @@
+.loader {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.primary-solid {
+  background: #b07000;
+  border-radius: 5px;
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 27px;
+  color: #ffffff;
+  width: 170px;
+  height: 46px;
+  border: unset;
+}
+.secondary-solid {
+  background: #b07000;
+  border-radius: 5px;
+  width: 228px;
+  height: 46px;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 27px;
+  color: #ffffff;
+  border: unset;
+}

@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { getRecipeData } from "../../redux/reducer/recipe";
 import { data } from "../../utils/const";
 import Loader from "../../component/loader";
+import logo from "../../assets/logo-brown.svg";
 
 export const Recipe = () => {
   const [recipeData, setRecipeData] = useState({});
@@ -32,7 +33,7 @@ export const Recipe = () => {
   console.log("===>recipeData", data);
   return (
     // <div>
-    //   {isLoading ? (
+    //   {¸¸ˀˀˀ? (
     //     <Loader />
     //   ) : (
     //     <div>
@@ -44,21 +45,63 @@ export const Recipe = () => {
     //     </div>
     //   )}
     // </div>
-    <div>
-      <div>
-        {Object.keys(data.dietPlan).map((day) => {
-          return (
-            <div key={day}>
-              <h3>{day}</h3>
-              <p>Breakfast: {data.dietPlan[day]?.Breakfast}</p>
-              <p>Morning Snack: {data.dietPlan[day]?.MorningSnack}</p>
-              <p>Lunch: {data.dietPlan[day]?.Lunch}</p>
-              <p>Evening Snack: {data.dietPlan[day]?.EveningSnack}</p>
-              <p>Dinner: {data.dietPlan[day]?.Dinner}</p>
+    <>
+      {false ? (
+        <Loader />
+      ) : (
+        <div className="container">
+          <div className="d-flex mt-4 justify-content-between align-items-center">
+            <img src={logo} alt="logo" />
+            <div>
+              <button className="secondary-solid me-1">Download PDF</button>
+              <button className="secondary-solid">Send Mail</button>
             </div>
-          );
-        })}
-      </div>
-    </div>
+          </div>
+          <div className="container mt-5">
+            <div className="row">
+              {Object.keys(data.dietPlan).map((day) => {
+                return (
+                  <div className="col-md-4 mb-3" key={day}>
+                    <div className="diet-cards">
+                      <h3 className="days-number">{day}</h3>
+                      <p className="meals">
+                        <span className="meal-time">Breakfast:</span>{" "}
+                        <span className="meal-description">
+                          {data.dietPlan[day]?.Breakfast}
+                        </span>
+                      </p>
+                      <p className="meals">
+                        <span className="meal-time">Morning Snack:</span>{" "}
+                        <span className="meal-description">
+                          {data.dietPlan[day]?.MorningSnack}
+                        </span>
+                      </p>
+                      <p className="meals">
+                        <span className="meal-time">Lunch:</span>{" "}
+                        <span className="meal-description">
+                          {data.dietPlan[day]?.Lunch}
+                        </span>
+                      </p>
+                      <p className="meals">
+                        <span className="meal-time">Evening Snack:</span>{" "}
+                        <span className="meal-description">
+                          {data.dietPlan[day]?.EveningSnack}
+                        </span>
+                      </p>
+                      <p className="meals">
+                        <span className="meal-time">Dinner:</span>{" "}
+                        <span className="meal-description">
+                          {data.dietPlan[day]?.Dinner}
+                        </span>
+                      </p>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        </div>
+      )}
+    </>
   );
 };

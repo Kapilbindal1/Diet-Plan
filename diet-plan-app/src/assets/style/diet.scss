@@ -1,0 +1,29 @@
+.diet-cards {
+  background: #ffe9c2;
+  border-radius: 20px;
+  padding: 25px;
+  min-height: 300px;
+  .days-number {
+    font-weight: 700;
+    font-size: 25px;
+    line-height: 46px;
+    color: #b07000;
+    margin-bottom: 15px;
+  }
+  .meals {
+    display: flex;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 15px;
+    color: #171717;
+    justify-content: space-between;
+    .meal-time {
+      font-weight: 600;
+      width: 40%;
+    }
+    .meal-description {
+      width: 60%;
+    }
+  }
+}
