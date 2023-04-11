@@ -14,11 +14,13 @@ function* addUserAnswer(action) {
       services.addUserAnswer,
       action.payload.requestBody,
     );
+
     console.log("===>response", response);
-    const { status, statusText, data = [] } = response || {};
+    const { status, statusText, data = [], id = data._id } = response || {};
     if (status === 200) {
       successAlert("Successfully added answers.");
-      yield put(userAnswerAddedSuccess(data));
+      const recipe = yield call(services.getRecipeRequest, id);
+      yield put(userAnswerAddedSuccess(recipe.data));
     } else {
       errorAlert("Failed to added answers");
       yield put(userAnswerAddedFailure());
