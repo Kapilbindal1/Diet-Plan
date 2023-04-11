@@ -21,7 +21,7 @@ export const genrateMealPdfWithEmail = (data, email) => {
   return postDataApi({
     path: request.path,
     data: {
-      dietPlan: data,
+      dietPlan: data.dietPlan,
       userEmailAddress: email,
     },
   });

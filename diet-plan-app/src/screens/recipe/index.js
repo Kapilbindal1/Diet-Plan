@@ -7,12 +7,16 @@ import {
 } from "../../redux/reducer/recipe";
 import Loader from "../../component/loader";
 import logo from "../../assets/logo-brown.svg";
+import EmailModalPop from "../../component/modal/emailModal";
+import close from "../../assets/close.svg";
 
 export const Recipe = () => {
   // const [recipeData, setRecipeData] = useState({});
   const [isLoading, setIsLoading] = useState(true);
   const [base64Url1, setBase64Url] = useState("");
   const [pdfurl1, setPdfUrl] = useState("");
+  const [isModal, setIsModal] = useState(false);
+  const [isDisclaimer, setIsDisclaimer] = useState(false);
 
   const dispatch = useDispatch();
 
@@ -39,6 +43,10 @@ export const Recipe = () => {
   // }, [userId]);
 
   useEffect(() => {
+    setIsDisclaimer(true);
+  }, []);
+
+  useEffect(() => {
     if (Object.keys(recipeData).length > 0)
       dispatch(
         genratePdf(
@@ -61,15 +69,16 @@ export const Recipe = () => {
   }, [Object.keys(recipeData).length]);
 
   const handlePdfWithEmail = () => {
-    let obj = { recipeData: recipeData, email: "dgrover930@gmail.com" };
-    console.log("====>sendMail");
-    dispatch(
-      genratePdfWithEmail(
-        obj,
-        (res) => {},
-        (e) => {},
-      ),
-    );
+    // let obj = { recipeData: recipeData, email: "bgarg@innow8apps.com" };
+    // console.log("====>sendMail");
+    // dispatch(
+    //   genratePdfWithEmail(
+    //     obj,
+    //     (res) => {},
+    //     (e) => {},
+    //   ),
+    // );
+    setIsModal(true);
   };
 
   return (
@@ -77,16 +86,25 @@ export const Recipe = () => {
       {/* {isLoading ? (
         <Loader />
       ) : ( */}
+      {isDisclaimer && (
+        <p className="disclaimer">
+          The diet plan suggestions provided by our app are generated using
+          Artificial Intelligence (AI) algorithms based on your input data. We
+          strive to provide the best possible recommendations, but we cannot
+          guarantee the accuracy, completeness, or usefulness of any information
+          provided.
+          <img src={close} alt="close" onClick={() => setIsDisclaimer(false)} />
+        </p>
+      )}
       <div className="container">
         <div className="d-flex mt-4 justify-content-between align-items-center">
           <img src={logo} alt="logo" />
           {/* <iframe src={pdfurl1} width="100%" height="500px"></iframe> */}
 
-          <div>
+          <div className="d-flex">
             {/* <button className="secondary-solid me-1" onClick={handleSavePdf}>
               Download PDF
             </button> */}
-
             <a
               className="secondary-solid me-1"
               href={pdfurl1}
@@ -158,6 +176,11 @@ export const Recipe = () => {
         </div>
       </div>
       {/* )} */}
+      <EmailModalPop
+        setIsModal={setIsModal}
+        isModal={isModal}
+        recipeData={recipeData}
+      />
     </React.Fragment>
   );
 };

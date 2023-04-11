@@ -66,15 +66,28 @@ const SlickSlider = () => {
     return character1;
   };
 
-  const handleNextButton = () => {
+  const handleNextButton = (item, type) => {
+    // console.log("=====>answers", answers);
+    // let check = item?.answers?.some((item) => {
+    //   if (item.isSelected === false) {
+    //     return false;
+    //   } else {
+    //     return true;
+    //   }
+    // });
+
+    // if (check) {
     setValue((prev) => prev + 1);
+    // } else {
+    //   alert(`please select ${type}`);
+    // }
   };
   const handleSubmit = () => {
     // userAnswerValidateDetail(answers);
     dispatch(addUserAnswerRequest(answers));
     navigate("/recipe");
   };
-  console.log("===>answers", answers);
+
   return (
     <div className="container-fluid">
       <img src={logo} alt="logo" />
@@ -151,7 +164,9 @@ const SlickSlider = () => {
                           <button
                             className="primary-solid"
                             onClick={
-                              value === 5 ? handleSubmit : handleNextButton
+                              value === 5
+                                ? handleSubmit
+                                : () => handleNextButton(item, item.type)
                             }
                           >
                             {value === 5 ? "Submit" : "Next"}

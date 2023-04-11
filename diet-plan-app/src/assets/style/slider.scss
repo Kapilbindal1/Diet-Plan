@@ -63,7 +63,7 @@ body {
     }
   }
   .options {
-    border: 1px solid #b07000;
+    border: 1px solid #a8a8a8;
     border-radius: 4px;
     font-family: "Inter";
     font-style: normal;
@@ -72,9 +72,12 @@ body {
     line-height: 27px;
     padding: 8px 6px;
     color: #171717;
+    cursor: pointer;
     &.active {
       border: 1px solid #b07000;
-      color: #ef0a0a;
+      .option {
+        border: 1px solid #b07000;
+      }
     }
     .option {
       background: #ffe9c2;
