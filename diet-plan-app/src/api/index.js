@@ -2,7 +2,8 @@ import axios from "axios";
 
 import { store } from "../redux/store";
 
-const REACT_APP_BASE_URL = "http://192.168.1.11:4001/";
+// const REACT_APP_BASE_URL = "http://192.168.1.11:4001/";
+const REACT_APP_BASE_URL = "https://diet-plan-be.onrender.com/";
 
 const customAxios = axios.create({
   baseURL: `${REACT_APP_BASE_URL}`,

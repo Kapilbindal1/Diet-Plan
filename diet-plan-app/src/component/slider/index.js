@@ -33,25 +33,35 @@ const SlickSlider = () => {
     setValue((prev) => prev + 1);
   };
 
-  const onHandleAnswers = (type, option, ansType, index1, index) => {
-    setAnswers({ ...answers, [type]: option });
+  const onHandleAnswers = (
+    type,
+    option,
+    ansType,
+    questionIndex,
+    answerIndex,
+  ) => {
+    setAnswers({ ...answers, [type]: option.toLowerCase() });
     // userAnswerValidateDetail(answers);
-    if (ansType === "input" || value === 5) {
+    console.log("===>ansType", ansType);
+    if (ansType === "input") {
       return;
     }
-    let tempArry = [...quesAnswArr];
-
-    tempArry[index1].answers[index].isSelected =
-      !tempArry[index1].answers[index].isSelected;
-
-    setQuesAnswArr(tempArry);
-    setValue((prev) => prev + 1);
+    const newQuestionsState = [...quesAnswArr];
+    const newAnswers = [...newQuestionsState[questionIndex].answers];
+    newAnswers.forEach((answer, index) => {
+      answer.isSelected = index === answerIndex;
+    });
+    newQuestionsState[questionIndex].answers = newAnswers;
+    if (value !== 5) {
+      setValue((prev) => prev + 1);
+    }
+    setQuesAnswArr(newQuestionsState);
   };
 
-  const getAlaphabet = (index) => {
-    const character = "A";
-    const asciiValue = character.charCodeAt(0);
-    const character1 = String.fromCharCode(asciiValue + index);
+  const getAlaphabet = (answerIndex) => {
+    const char = "A";
+    const asciiValue = char.charCodeAt(0);
+    const character1 = String.fromCharCode(asciiValue + answerIndex);
 
     return character1;
   };
@@ -72,17 +82,19 @@ const SlickSlider = () => {
         <div className="container">
           <>
             {quesAnswArr.length > 0 &&
-              quesAnswArr.map((item, index1) => {
+              quesAnswArr.map((item, questionIndex) => {
                 return (
                   <div
                     className={`row align-items-center slides ${
-                      value === index1 ? "active-slide" : ""
+                      value === questionIndex ? "active-slide" : ""
                     }`}
                   >
                     <div className="col-md-6">
-                      {value === index1 && (
+                      {value === questionIndex && (
                         <div className="slider-content animate__animated animate__backInUp">
-                          <h5 className="steps">{`Step 0${index1 + 1}`}</h5>
+                          <h5 className="steps">{`Step 0${
+                            questionIndex + 1
+                          }`}</h5>
                           <h2>{item.question}</h2>
                           <h6 className="description">
                             {item?.description?.map((des) => {
@@ -110,7 +122,7 @@ const SlickSlider = () => {
                               />
                             )}
                           </div>
-                          {item.answers?.map((item2, index) => {
+                          {item.answers?.map((item2, answerIndex) => {
                             return (
                               <h6
                                 className={
@@ -123,13 +135,13 @@ const SlickSlider = () => {
                                     item.type,
                                     item2.option,
                                     null,
-                                    index1,
-                                    index,
+                                    questionIndex,
+                                    answerIndex,
                                   )
                                 }
                               >
                                 <span className="option">
-                                  {getAlaphabet(index)}
+                                  {getAlaphabet(answerIndex)}
                                 </span>
                                 {item2.option}
                               </h6>
