@@ -84,7 +84,7 @@ export const Recipe = () => {
       {/* {isLoading ? (
         <Loader />
       ) : ( */}
-      {isDisclaimer && (
+      {/* {isDisclaimer && (
         <p className="disclaimer">
           The diet plan suggestions provided by our app are generated using
           Artificial Intelligence (AI) algorithms based on your input data. We
@@ -93,16 +93,11 @@ export const Recipe = () => {
           provided.
           <img src={close} alt="close" onClick={() => setIsDisclaimer(false)} />
         </p>
-      )}
+      )} */}
       <div className="container">
         <div className="d-flex mt-4 justify-content-between align-items-center">
           <img src={logo} alt="logo" />
-          {/* <iframe src={pdfurl1} width="100%" height="500px"></iframe> */}
-
           <div className="d-flex">
-            {/* <button className="secondary-solid me-1" onClick={handleSavePdf}>
-              Download PDF
-            </button> */}
             <a
               className="secondary-solid me-1"
               href={pdfurl1}
@@ -116,69 +111,104 @@ export const Recipe = () => {
             </button>
           </div>
         </div>
-        <div className="container mt-5">
-          <div className="row">
-            {Object.keys(recipeData).length > 0 &&
-              Object.keys(recipeData?.dietPlan).map((day) => {
-                return (
-                  <div className="col-md-4 mb-3" key={day}>
-                    <div className="diet-cards">
-                      <h3 className="days-number">
-                        {day?.charAt(0)?.toUpperCase() + day?.slice(1)}
-                      </h3>
-                      <p className="meals">
-                        <span className="meal-time">Breakfast:</span>{" "}
-                        <span className="meal-description">
-                          {recipeData?.dietPlan[day]?.breakfast
-                            ? recipeData?.dietPlan[day]?.breakfast
-                            : recipeData?.dietPlan[day]?.Breakfast}
-                        </span>
-                      </p>
-                      <p className="meals">
-                        <span className="meal-time">Morning Snack:</span>{" "}
-                        <span className="meal-description">
-                          {recipeData?.dietPlan[day]?.morningSnack
-                            ? recipeData?.dietPlan[day]?.morningSnack
-                            : recipeData?.dietPlan[day]["Morning Snack"]}
-                        </span>
-                      </p>
-                      <p className="meals">
-                        <span className="meal-time">Lunch:</span>{" "}
-                        <span className="meal-description">
-                          {recipeData?.dietPlan[day]?.lunch
-                            ? recipeData?.dietPlan[day]?.lunch
-                            : recipeData?.dietPlan[day]?.Lunch}
-                        </span>
-                      </p>
-                      <p className="meals">
-                        <span className="meal-time">Evening Snack:</span>{" "}
-                        <span className="meal-description">
-                          {recipeData?.dietPlan[day]?.eveningSnack
-                            ? recipeData?.dietPlan[day]?.eveningSnack
-                            : recipeData?.dietPlan[day]["Evening Snack"]}
-                        </span>
-                      </p>
-                      <p className="meals">
-                        <span className="meal-time">Dinner:</span>{" "}
-                        <span className="meal-description">
-                          {recipeData?.dietPlan[day]?.dinner
-                            ? recipeData?.dietPlan[day]?.dinner
-                            : recipeData?.dietPlan[day]?.Dinner}
-                        </span>
-                      </p>
-                    </div>
-                  </div>
-                );
-              })}
-          </div>
+        <div>
+          {Object.entries(recipeData.dietPlan).map(([mealName, mealData]) => {
+            return (
+              <div>
+                <h2>{mealName}</h2>
+                <p>Meal: {mealData.meal}</p>
+                <p>Protein: {mealData.nutrition?.proteins}</p>
+                <p>Fats: {mealData.nutrition?.fats}</p>
+                <p>Carbs: {mealData.nutrition?.carbs}</p>
+                <p>Total Calories: {mealData.nutrition.calories}</p>
+              </div>
+            );
+          })}
         </div>
       </div>
-      {/* )} */}
-      <EmailModalPop
+
+      {/* <EmailModalPop
         setIsModal={setIsModal}
         isModal={isModal}
         recipeData={recipeData}
-      />
+      /> */}
     </React.Fragment>
   );
 };
+
+//  <div className="container">
+//         <div className="d-flex mt-4 justify-content-between align-items-center">
+//           <img src={logo} alt="logo" />
+
+// <div className="d-flex">
+
+//     <a
+//       className="secondary-solid me-1"
+//       href={pdfurl1}
+//       download={"diet-meal"}
+//     >
+//       Download PDF
+//     </a>
+
+//     <button className="secondary-solid" onClick={handlePdfWithEmail}>
+//       Send Mail
+//     </button>
+//   </div>
+// </div>
+// <div className="container mt-5">
+//   <div className="row">
+//     {Object.keys(recipeData).length > 0 &&
+//       Object.keys(recipeData?.dietPlan).map((day) => {
+//         return (
+//           <div className="col-md-4 mb-3" key={day}>
+//             <div className="diet-cards">
+//               <h3 className="days-number">
+//                 {day?.charAt(0)?.toUpperCase() + day?.slice(1)}
+//               </h3>
+//               <p className="meals">
+//                 <span className="meal-time">Breakfast:</span>{" "}
+//                 <span className="meal-description">
+//                   {recipeData?.dietPlan[day]?.breakfast
+//                     ? recipeData?.dietPlan[day]?.breakfast
+//                     : recipeData?.dietPlan[day]?.Breakfast}
+//                 </span>
+//               </p>
+//               <p className="meals">
+//                 <span className="meal-time">Morning Snack:</span>{" "}
+//                 <span className="meal-description">
+//                   {recipeData?.dietPlan[day]?.morningSnack
+//                     ? recipeData?.dietPlan[day]?.morningSnack
+//                     : recipeData?.dietPlan[day]["Morning Snack"]}
+//                 </span>
+//               </p>
+//               <p className="meals">
+//                 <span className="meal-time">Lunch:</span>{" "}
+//                 <span className="meal-description">
+//                   {recipeData?.dietPlan[day]?.lunch
+//                     ? recipeData?.dietPlan[day]?.lunch
+//                     : recipeData?.dietPlan[day]?.Lunch}
+//                 </span>
+//               </p>
+//               <p className="meals">
+//                 <span className="meal-time">Evening Snack:</span>{" "}
+//                 <span className="meal-description">
+//                   {recipeData?.dietPlan[day]?.eveningSnack
+//                     ? recipeData?.dietPlan[day]?.eveningSnack
+//                     : recipeData?.dietPlan[day]["Evening Snack"]}
+//                 </span>
+//               </p>
+//               <p className="meals">
+//                 <span className="meal-time">Dinner:</span>{" "}
+//                 <span className="meal-description">
+//                   {recipeData?.dietPlan[day]?.dinner
+//                     ? recipeData?.dietPlan[day]?.dinner
+//                     : recipeData?.dietPlan[day]?.Dinner}
+//                 </span>
+//               </p>
+//             </div>
+//           </div>
+//         );
+//       })}
+//   </div>
+// </div>
+// </div>
