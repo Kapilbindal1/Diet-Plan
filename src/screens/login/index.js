@@ -5,6 +5,7 @@ export const Login = () => {
   const navigate = useNavigate();
   const handleCilck = () => {
     navigate("/signup");
+    console.log("check");
   };
   return (
     <div>
