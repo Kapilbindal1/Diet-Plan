@@ -14,7 +14,7 @@ import {
   genratePdf,
   genratePdfWithEmail,
 } from "../../redux/reducer/recipe";
-import close from "../../assets/close.svg";
+import close from "../../assets/images/close.svg";
 
 import { useDispatch, useSelector } from "react-redux";
 
@@ -29,8 +29,8 @@ const EmailModalPop = ({ isModal, setIsModal, recipeData }) => {
     dispatch(
       genratePdfWithEmail(
         obj,
-        (res) => {},
-        (e) => {},
+        (res) => { },
+        (e) => { },
       ),
     );
 
@@ -40,9 +40,9 @@ const EmailModalPop = ({ isModal, setIsModal, recipeData }) => {
   return (
     <React.Fragment>
       <Modal
-        className="common-modal modal-dialog-centered"
+        className="common-modal small-modal modal-dialog-centered"
         isOpen={isModal}
-        // toggle={toggle}
+      // toggle={toggle}
       >
         <div className="close-icon">
           <img src={close} alt="close" onClick={() => setIsModal(false)} />

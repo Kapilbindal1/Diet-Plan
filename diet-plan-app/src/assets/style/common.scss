@@ -5,7 +5,7 @@
   align-items: center;
 }
 .primary-solid {
-  background: #b07000;
+  background: #E3664F;
   border-radius: 5px;
   font-family: "Inter";
   font-style: normal;
@@ -17,31 +17,33 @@
   height: 46px;
   border: unset;
 }
-.secondary-solid {
-  background: #b07000;
+.secondary-outline {
+  border: 1px solid #E3664F;
   border-radius: 5px;
+  border-radius: 5px;
+  background-color: rgb(255, 255, 255);
   width: 228px;
   height: 46px;
   font-weight: 700;
-  font-size: 16px;
+  font-size: 15px;
   line-height: 27px;
-  color: #ffffff;
-  border: unset;
+  color: #E3664F;
   display: flex;
   align-items: center;
   justify-content: center;
   text-decoration: none;
   &:hover {
     color: #ffffff;
+    background-color: #E3664F;
   }
 }
 .disclaimer {
   color: #ffffff;
   padding: 10px;
-  background: #b07001;
+  background-color: #EBEBEB;
   font-size: 13px;
-  margin: 10px;
-  border-radius: 5px;
+  color: #818181;
+  text-align: center;
   position: relative;
   img {
     position: absolute;
@@ -55,7 +57,89 @@
   background: rgba(0, 0, 0, 0.6);
 }
 .common-modal {
-  max-width: 548px;
+  max-width: 70%;
+  .recipe-title{
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 20px;
+    color: #171717;
+    margin-bottom: 23px;
+  }
+  .ingredients{
+    padding: 30px;
+  }
+  .scroll-bar{
+    max-height: 400px;
+    overflow-y: scroll;
+    margin-right: 5px;
+    /* width */
+    &::-webkit-scrollbar {
+      width: 6px;
+      border-radius: 5px;
+    }
+
+    /* Track */
+    &::-webkit-scrollbar-track {
+      border-radius: 5px;
+    }
+
+    /* Handle */
+    &::-webkit-scrollbar-thumb {
+      background: #d4d4d4;
+      border-radius: 5px;
+    }
+  }
+  .nutrients-value{
+    .modal-title{
+      display: flex;
+      width: 100%;
+      justify-content: space-between;
+    }
+    .nutreints-calc {
+      display: flex;
+      align-items: center;
+      margin-right: 40px;
+      .nutreints-calc-val {
+        margin-right: 21px;
+        font-size: 12px;
+        color: #565656;
+        img{
+          margin-right: 6px;
+          width: 16px;
+          height: 16px;
+        }
+    }
+  }
+  }
+
+  p {
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 30px;
+    color: #565656;
+  }
+  .cooking-steps{
+    padding-left: 45px;
+    border-left: 1px solid #D9DEE2;
+      .steps-list {
+          position: relative;
+          padding-left: 25px;
+      }
+    .steps{
+      font-weight: 600;
+      font-size: 16px;
+      color: #565656;
+      margin-right: 10px;
+      position: absolute;
+      left: 0;
+    }
+  }
+  .cooking-modal-body{
+    padding: 0;
+  }
+  &.small-modal{
+    max-width: 548px;
+  }
   .close-icon {
     position: absolute;
     right: 20px;
@@ -79,15 +163,15 @@
   .modal-header {
     .modal-title {
       font-weight: 800;
-      font-size: 18px;
+      font-size: 20px;
       text-align: center;
-      color: #b07000;
+      color:  #E3664F;
     }
   }
   .modal-footer {
     border-top: none;
     button {
-      background: #b07000;
+      background-color:  #E3664F;
       border-radius: 5px;
       border: transparent;
       width: 150px;
@@ -98,5 +182,10 @@
       line-height: 21px;
       color: #ffffff;
     }
+  }
+}
+.form-control{
+  &:focus{
+    box-shadow:none;
   }
 }

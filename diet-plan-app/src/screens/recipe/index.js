@@ -6,9 +6,17 @@ import {
   genratePdfWithEmail,
 } from "../../redux/reducer/recipe";
 import Loader from "../../component/loader";
-import logo from "../../assets/logo-brown.svg";
+import logo from "../../assets/images/logo-orange.svg";
 import EmailModalPop from "../../component/modal/emailModal";
-import close from "../../assets/close.svg";
+import close from "../../assets/images/close.svg";
+import fats from "../../assets/images/fats.svg";
+import proteins from "../../assets/images/proteins.svg";
+import kcal from "../../assets/images/kcal.svg";
+import carbs from "../../assets/images/carbs.svg";
+import RecipeDetailModalPop from "../../component/modal/recipeDetailModal";
+
+
+
 
 export const Recipe = () => {
   // const [recipeData, setRecipeData] = useState({});
@@ -84,131 +92,96 @@ export const Recipe = () => {
       {/* {isLoading ? (
         <Loader />
       ) : ( */}
-      {/* {isDisclaimer && (
+      {isDisclaimer && (
         <p className="disclaimer">
-          The diet plan suggestions provided by our app are generated using
-          Artificial Intelligence (AI) algorithms based on your input data. We
-          strive to provide the best possible recommendations, but we cannot
-          guarantee the accuracy, completeness, or usefulness of any information
-          provided.
+          The diet plan suggestions provided by our app are generated using AI based on your input data.
+          We strive to provide the best possible recommendations, but we cannot guarantee the accuracy,
+          completeness, or usefulness of any information provided.
           <img src={close} alt="close" onClick={() => setIsDisclaimer(false)} />
         </p>
-      )} */}
+      )}
       <div className="container">
-        <div className="d-flex mt-4 justify-content-between align-items-center">
+        <div className="d-flex flex-wrap mt-4 justify-content-between align-items-center">
           <img src={logo} alt="logo" />
-          <div className="d-flex">
+          <div className="d-flex flex-wrap">
             <a
-              className="secondary-solid me-1"
+              className="secondary-outline me-4"
               href={pdfurl1}
               download={"diet-meal"}
             >
               Download PDF
             </a>
 
-            <button className="secondary-solid" onClick={handlePdfWithEmail}>
+            <button className="secondary-outline" onClick={handlePdfWithEmail}>
               Send Mail
             </button>
           </div>
         </div>
-        <div>
-          {Object.entries(recipeData.dietPlan).map(([mealName, mealData]) => {
-            return (
-              <div>
-                <h2>{mealName}</h2>
-                <p>Meal: {mealData.meal}</p>
-                <p>Protein: {mealData.nutrition?.proteins}</p>
-                <p>Fats: {mealData.nutrition?.fats}</p>
-                <p>Carbs: {mealData.nutrition?.carbs}</p>
-                <p>Total Calories: {mealData.nutrition.calories}</p>
-              </div>
-            );
-          })}
+        <div className="container mt-5">
+          <div className="row">
+            {Object.keys(recipeData).length > 0 && Object.entries(recipeData?.dietPlan).map(([mealName, mealData]) => {
+              return (
+
+                <div className="col-lg-4 col-xs-12 mb-3" key={mealName}>
+                  <div className="diet-cards">
+                    <div className="meal-header">
+                      <h3 className="meal-title">
+                        {mealName}
+                      </h3>
+                      <span className="total-calories"><img src={kcal} alt="kcal" />
+                        {mealData.nutrition.calories}</span>
+                    </div>
+
+                    <h5 className="meal-name">{mealData.meal}</h5>
+
+                    <div className="Macronutrients-Breakup">
+                      <h6 className="nutrients-title">Macronutrients Breakup</h6>
+                      <p className="meals">
+                        <span className="nutrients">
+                          <img src={proteins} alt="proteins" />  Protein:
+                        </span>
+                        <span className="nutrients-value">
+                          {mealData.nutrition?.proteins}
+                        </span>
+                      </p>
+                      <p className="meals">
+                        <span className="nutrients">   <img src={fats} alt="fats" />Fats:</span>{" "}
+                        <span className="nutrients-value">
+                          {mealData.nutrition?.fats}
+                        </span>
+                      </p>
+                      <p className="meals">
+                        <span className="nutrients"><img src={carbs} alt="carbs" />Carbs:</span>{" "}
+                        <span className="nutrients-value">
+                          {mealData.nutrition?.carbs}
+                        </span>
+                      </p>
+                      <p className="meals">
+
+                      </p>
+                    </div>
+
+                    <div className="d-flex justify-content-end">
+                      <button className="secondary-outline">
+                        View Details
+                      </button>
+                    </div>
+                  </div>
+                </div>
+
+              );
+            })}
+          </div>
         </div>
       </div>
 
-      {/* <EmailModalPop
+      <EmailModalPop
         setIsModal={setIsModal}
         isModal={isModal}
         recipeData={recipeData}
-      /> */}
-    </React.Fragment>
+      />
+      <RecipeDetailModalPop />
+    </React.Fragment >
   );
 };
 
-//  <div className="container">
-//         <div className="d-flex mt-4 justify-content-between align-items-center">
-//           <img src={logo} alt="logo" />
-
-// <div className="d-flex">
-
-//     <a
-//       className="secondary-solid me-1"
-//       href={pdfurl1}
-//       download={"diet-meal"}
-//     >
-//       Download PDF
-//     </a>
-
-//     <button className="secondary-solid" onClick={handlePdfWithEmail}>
-//       Send Mail
-//     </button>
-//   </div>
-// </div>
-// <div className="container mt-5">
-//   <div className="row">
-//     {Object.keys(recipeData).length > 0 &&
-//       Object.keys(recipeData?.dietPlan).map((day) => {
-//         return (
-//           <div className="col-md-4 mb-3" key={day}>
-//             <div className="diet-cards">
-//               <h3 className="days-number">
-//                 {day?.charAt(0)?.toUpperCase() + day?.slice(1)}
-//               </h3>
-//               <p className="meals">
-//                 <span className="meal-time">Breakfast:</span>{" "}
-//                 <span className="meal-description">
-//                   {recipeData?.dietPlan[day]?.breakfast
-//                     ? recipeData?.dietPlan[day]?.breakfast
-//                     : recipeData?.dietPlan[day]?.Breakfast}
-//                 </span>
-//               </p>
-//               <p className="meals">
-//                 <span className="meal-time">Morning Snack:</span>{" "}
-//                 <span className="meal-description">
-//                   {recipeData?.dietPlan[day]?.morningSnack
-//                     ? recipeData?.dietPlan[day]?.morningSnack
-//                     : recipeData?.dietPlan[day]["Morning Snack"]}
-//                 </span>
-//               </p>
-//               <p className="meals">
-//                 <span className="meal-time">Lunch:</span>{" "}
-//                 <span className="meal-description">
-//                   {recipeData?.dietPlan[day]?.lunch
-//                     ? recipeData?.dietPlan[day]?.lunch
-//                     : recipeData?.dietPlan[day]?.Lunch}
-//                 </span>
-//               </p>
-//               <p className="meals">
-//                 <span className="meal-time">Evening Snack:</span>{" "}
-//                 <span className="meal-description">
-//                   {recipeData?.dietPlan[day]?.eveningSnack
-//                     ? recipeData?.dietPlan[day]?.eveningSnack
-//                     : recipeData?.dietPlan[day]["Evening Snack"]}
-//                 </span>
-//               </p>
-//               <p className="meals">
-//                 <span className="meal-time">Dinner:</span>{" "}
-//                 <span className="meal-description">
-//                   {recipeData?.dietPlan[day]?.dinner
-//                     ? recipeData?.dietPlan[day]?.dinner
-//                     : recipeData?.dietPlan[day]?.Dinner}
-//                 </span>
-//               </p>
-//             </div>
-//           </div>
-//         );
-//       })}
-//   </div>
-// </div>
-// </div>

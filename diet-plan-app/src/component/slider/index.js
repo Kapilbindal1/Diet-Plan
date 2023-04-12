@@ -7,9 +7,9 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { detail } from "../../utils/const";
 import Fruits from "../../assets/gif/fruits.gif";
-import logo from "../../assets/logo.svg";
-import next from "../../assets/next.svg";
-import prev from "../../assets/prev.svg";
+import logo from "../../assets/images/logo.svg";
+import next from "../../assets/images/next.svg";
+import prev from "../../assets/images/prev.svg";
 import { addUserAnswerRequest } from "../../redux/reducer/user";
 import { userAnswerValidateDetail } from "../../utils/validation";
 
@@ -114,7 +114,7 @@ const SlickSlider = () => {
   };
 
   return (
-    <div className="container-fluid">
+    <div className="container-fluid mt-4">
       <img src={logo} alt="logo" />
       <div className="slider-wraper">
         <div className="container">
@@ -123,16 +123,14 @@ const SlickSlider = () => {
               quesAnswArr.map((item, questionIndex) => {
                 return (
                   <div
-                    className={`row align-items-center slides ${
-                      value === questionIndex ? "active-slide" : ""
-                    }`}
+                    className={`row align-items-center slides ${value === questionIndex ? "active-slide" : ""
+                      }`}
                   >
                     <div className="col-md-6">
                       {value === questionIndex && (
                         <div className="slider-content animate__animated animate__backInUp">
-                          <h5 className="steps">{`Step 0${
-                            questionIndex + 1
-                          }`}</h5>
+                          <h5 className="steps">{`Step 0${questionIndex + 1
+                            }`}</h5>
                           <h2>{item.question}</h2>
                           <h6 className="description">
                             {item?.description?.map((des) => {
@@ -192,9 +190,9 @@ const SlickSlider = () => {
                               value === 5
                                 ? handleSubmit
                                 : () => {
-                                    handleNextButton(item);
-                                    setQuestionValue(item);
-                                  }
+                                  handleNextButton(item);
+                                  setQuestionValue(item);
+                                }
                             }
                           >
                             {value === 5 ? "Submit" : "Next"}

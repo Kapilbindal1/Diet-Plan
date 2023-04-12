@@ -17,7 +17,8 @@ body {
   position: relative;
   transition: all 600ms ease 0s;
   .slider-content {
-    background: #ffe9c2;
+    background: #FFFFFF;
+    box-shadow: 0px 0px 43px 8px rgba(0, 0, 0, 0.06);
     border-radius: 20px;
     padding: 39px 57px;
     transition: all 600ms ease 0s;
@@ -25,7 +26,7 @@ body {
       font-weight: 700;
       font-size: 20px;
       line-height: 30px;
-      color: rgba(176, 112, 0, 0.4);
+      color: rgba(0, 0, 0, 0.24);
       margin-bottom: 10px;
     }
     h2 {
@@ -63,7 +64,7 @@ body {
     }
   }
   .options {
-    border: 1px solid #a8a8a8;
+    border: 1px solid #A8A8A8;
     border-radius: 4px;
     font-family: "Inter";
     font-style: normal;
@@ -74,14 +75,17 @@ body {
     color: #171717;
     cursor: pointer;
     &.active {
-      border: 1px solid #b07000;
+      border: 1px solid #E3664F;
+      color: #E3664F;
       .option {
-        border: 1px solid #b07000;
+        background: #E3664F;
+        border: 1px solid #E3664F;
+        color: #FFFFFF;
       }
     }
     .option {
-      background: #ffe9c2;
-      border: 1px solid #a8a8a8;
+      background: #F8F8FA;
+      border: 1px solid #A8A8A8;
       border-radius: 2px;
       font-style: normal;
       font-weight: 500;
