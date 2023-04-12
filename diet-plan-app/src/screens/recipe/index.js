@@ -12,8 +12,7 @@ import close from "../../assets/close.svg";
 
 export const Recipe = () => {
   // const [recipeData, setRecipeData] = useState({});
-  const [isLoading, setIsLoading] = useState(true);
-  const [base64Url1, setBase64Url] = useState("");
+
   const [pdfurl1, setPdfUrl] = useState("");
   const [isModal, setIsModal] = useState(false);
   const [isDisclaimer, setIsDisclaimer] = useState(false);
@@ -51,9 +50,8 @@ export const Recipe = () => {
       dispatch(
         genratePdf(
           recipeData,
-          (res) => {
-            setBase64Url(res);
-            const pdfData = atob(res);
+          (base64Url1) => {
+            const pdfData = atob(base64Url1);
             const byteArray = new Uint8Array(
               pdfData.split("").map((char) => char.charCodeAt(0)),
             );

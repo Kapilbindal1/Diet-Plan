@@ -17,19 +17,23 @@ const SlickSlider = () => {
   const [value, setValue] = useState(0);
   const [answers, setAnswers] = useState({});
   const [quesAnswArr, setQuesAnswArr] = useState(detail);
+  const [questionValue, setQuestionValue] = useState([]);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
   const handleSlidePrev = () => {
     if (value === 0) {
       return;
     }
     setValue((prev) => prev - 1);
   };
+
   const handleSlideNext = () => {
     if (value === 5) {
       return;
     }
+    // handleNextButton(questionValue);
     setValue((prev) => prev + 1);
   };
 
@@ -41,8 +45,7 @@ const SlickSlider = () => {
     answerIndex,
   ) => {
     setAnswers({ ...answers, [type]: option.toLowerCase() });
-    // userAnswerValidateDetail(answers);
-    console.log("===>ansType", ansType);
+
     if (ansType === "input") {
       return;
     }
@@ -66,26 +69,48 @@ const SlickSlider = () => {
     return character1;
   };
 
-  const handleNextButton = (item, type) => {
-    // console.log("=====>answers", answers);
-    // let check = item?.answers?.some((item) => {
-    //   if (item.isSelected === false) {
-    //     return false;
-    //   } else {
-    //     return true;
-    //   }
-    // });
+  const handleNextButton = (item) => {
+    let check = false;
 
-    // if (check) {
-    setValue((prev) => prev + 1);
-    // } else {
-    //   alert(`please select ${type}`);
-    // }
+    if (item.option_type === "list" && item.answer_type === null) {
+      check = item?.answers?.some((item) => {
+        if (item.isSelected === false) {
+          return false;
+        } else {
+          return true;
+        }
+      });
+    } else if (item.option_type === null && item.answer_type === "input") {
+      if (answers.height !== undefined) {
+        check = true;
+      } else if (answers.weight !== undefined && item.type !== "height") {
+        check = true;
+      }
+    } else {
+      check = true;
+    }
+
+    if (check) {
+      setValue((prev) => prev + 1);
+    } else {
+      if (item.answer_type === "input") {
+        if (item.type == "weight") {
+          alert(`Please enter your weight`);
+        } else {
+          alert(`Please enter your height`);
+        }
+      } else {
+        alert(`Please select ${item.type}`);
+      }
+    }
   };
   const handleSubmit = () => {
-    // userAnswerValidateDetail(answers);
-    dispatch(addUserAnswerRequest(answers));
-    navigate("/recipe");
+    if (answers.medicalHistory !== undefined) {
+      dispatch(addUserAnswerRequest(answers));
+      navigate("/recipe");
+    } else {
+      alert(`Please select medical history`);
+    }
   };
 
   return (
@@ -166,7 +191,10 @@ const SlickSlider = () => {
                             onClick={
                               value === 5
                                 ? handleSubmit
-                                : () => handleNextButton(item, item.type)
+                                : () => {
+                                    handleNextButton(item);
+                                    setQuestionValue(item);
+                                  }
                             }
                           >
                             {value === 5 ? "Submit" : "Next"}

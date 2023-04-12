@@ -4,6 +4,7 @@ export const detail = [
     question: "What’s your health goal? *",
     type: "fitnessGoals",
     option_type: "list",
+    answer_type: null,
     answers: [
       { option: "I want to lose weight", isSelected: false },
       { option: "I want to manage my medical conditions", isSelected: false },
@@ -16,6 +17,7 @@ export const detail = [
     question: "How old are you? *",
     type: "age",
     option_type: "list",
+    answer_type: null,
     answers: [
       { option: "25 - 35 years", isSelected: false },
       { option: "36 - 45 years", isSelected: false },
@@ -28,6 +30,7 @@ export const detail = [
     question: "Select your gender *",
     type: "gender",
     option_type: "list",
+    answer_type: null,
     answers: [
       { option: "Male", isSelected: false },
       { option: "Female", isSelected: false },
@@ -57,7 +60,7 @@ export const detail = [
       "190 is 6 feet 3 inches",
     ],
     type: "height",
-    option_type: "list",
+    option_type: null,
     answer_type: "input",
     // answers: [
     //   { option: "150 is 4 feet 11 inches", isSelected: false },
