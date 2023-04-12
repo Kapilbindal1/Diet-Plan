@@ -6,6 +6,7 @@ import {
   getRecipeData,
   genratePdf,
   genratePdfWithEmail,
+  genrateMealRecipe,
 } from "../../reducer/recipe";
 
 function* getRecipeDataRequest(action) {
@@ -74,10 +75,31 @@ function* genrateMealPdfWithEmailRequest(action) {
   }
 }
 
+function* genrateMealRecipeRequest(action) {
+  const meal = action.payload.meal;
+
+  try {
+    const response = yield call(services.genrateMealRecipePlan, meal);
+    console.log("===>responsegenrateMealRecipePlan", response);
+    const { status, statusText, data = [] } = response || {};
+    if (status === 200) {
+      successAlert("Successfully added answers.");
+      action.payload.successCallback(data);
+    } else {
+      errorAlert("Failed to added answers");
+      action.payload.failureCallback("error from recipe");
+    }
+  } catch (e) {
+    errorAlert("Failed to added answers");
+    action.payload.failureCallback("error from recipe");
+  }
+}
+
 function* recipeSaga() {
   yield takeLatest(getRecipeData.type, getRecipeDataRequest);
   yield takeLatest(genratePdf.type, genrateMealPdfRequest);
   yield takeLatest(genratePdfWithEmail.type, genrateMealPdfWithEmailRequest);
+  yield takeLatest(genrateMealRecipe.type, genrateMealRecipeRequest);
 }
 
 export default recipeSaga;

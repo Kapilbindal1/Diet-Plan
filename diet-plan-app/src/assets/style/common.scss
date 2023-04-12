@@ -5,7 +5,7 @@
   align-items: center;
 }
 .primary-solid {
-  background: #E3664F;
+  background: #e3664f;
   border-radius: 5px;
   font-family: "Inter";
   font-style: normal;
@@ -18,7 +18,7 @@
   border: unset;
 }
 .secondary-outline {
-  border: 1px solid #E3664F;
+  border: 1px solid #e3664f;
   border-radius: 5px;
   border-radius: 5px;
   background-color: rgb(255, 255, 255);
@@ -27,20 +27,20 @@
   font-weight: 700;
   font-size: 15px;
   line-height: 27px;
-  color: #E3664F;
+  color: #e3664f;
   display: flex;
   align-items: center;
   justify-content: center;
   text-decoration: none;
   &:hover {
     color: #ffffff;
-    background-color: #E3664F;
+    background-color: #e3664f;
   }
 }
 .disclaimer {
   color: #ffffff;
   padding: 10px;
-  background-color: #EBEBEB;
+  background-color: #ebebeb;
   font-size: 13px;
   color: #818181;
   text-align: center;
@@ -58,17 +58,20 @@
 }
 .common-modal {
   max-width: 70%;
-  .recipe-title{
+  .loader {
+    height: 40vh;
+  }
+  .recipe-title {
     font-weight: 700;
     font-size: 20px;
     line-height: 20px;
     color: #171717;
     margin-bottom: 23px;
   }
-  .ingredients{
+  .ingredients {
     padding: 30px;
   }
-  .scroll-bar{
+  .scroll-bar {
     max-height: 400px;
     overflow-y: scroll;
     margin-right: 5px;
@@ -89,8 +92,8 @@
       border-radius: 5px;
     }
   }
-  .nutrients-value{
-    .modal-title{
+  .nutrients-value {
+    .modal-title {
       display: flex;
       width: 100%;
       justify-content: space-between;
@@ -103,13 +106,13 @@
         margin-right: 21px;
         font-size: 12px;
         color: #565656;
-        img{
+        img {
           margin-right: 6px;
           width: 16px;
           height: 16px;
         }
+      }
     }
-  }
   }
 
   p {
@@ -118,14 +121,14 @@
     line-height: 30px;
     color: #565656;
   }
-  .cooking-steps{
+  .cooking-steps {
     padding-left: 45px;
-    border-left: 1px solid #D9DEE2;
-      .steps-list {
-          position: relative;
-          padding-left: 25px;
-      }
-    .steps{
+    border-left: 1px solid #d9dee2;
+    .steps-list {
+      position: relative;
+      padding-left: 25px;
+    }
+    .steps {
       font-weight: 600;
       font-size: 16px;
       color: #565656;
@@ -134,10 +137,10 @@
       left: 0;
     }
   }
-  .cooking-modal-body{
+  .cooking-modal-body {
     padding: 0;
   }
-  &.small-modal{
+  &.small-modal {
     max-width: 548px;
   }
   .close-icon {
@@ -165,13 +168,13 @@
       font-weight: 800;
       font-size: 20px;
       text-align: center;
-      color:  #E3664F;
+      color: #e3664f;
     }
   }
   .modal-footer {
     border-top: none;
     button {
-      background-color:  #E3664F;
+      background-color: #e3664f;
       border-radius: 5px;
       border: transparent;
       width: 150px;
@@ -184,8 +187,8 @@
     }
   }
 }
-.form-control{
-  &:focus{
-    box-shadow:none;
+.form-control {
+  &:focus {
+    box-shadow: none;
   }
 }

@@ -26,3 +26,13 @@ export const genrateMealPdfWithEmail = (data, email) => {
     },
   });
 };
+
+export const genrateMealRecipePlan = (meal) => {
+  const request = config.generateRecipe;
+  return postDataApi({
+    path: request.path,
+    data: {
+      meal,
+    },
+  });
+};

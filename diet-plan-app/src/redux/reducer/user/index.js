@@ -10,7 +10,9 @@ export const userSlice = createSlice({
   initialState,
   reducers: {
     addUserAnswerRequest: {
-      reducer: (state) => {},
+      reducer: (state) => {
+        state.isLoading = true;
+      },
       prepare: (requestBody) => {
         return {
           payload: { requestBody },

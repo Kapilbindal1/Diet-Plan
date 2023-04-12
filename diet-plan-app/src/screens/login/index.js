@@ -8,11 +8,9 @@ export const Login = () => {
   const handleCilck = () => {
     navigate("/signup");
   };
+  useEffect(() => {
+    navigate("/detail");
+  }, []);
 
-  return (
-    <div>
-      Login
-      <button onClick={handleCilck}>navigate</button>
-    </div>
-  );
+  return <></>;
 };

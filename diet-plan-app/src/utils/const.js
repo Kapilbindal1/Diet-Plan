@@ -82,11 +82,11 @@ export const detail = [
     answer_type: null,
     answers: [
       { option: "PCOS/PCOD", isSelected: false },
-      { option: "None", isSelected: false },
       { option: "Diabetes", isSelected: false },
       { option: "Hypertension", isSelected: false },
       { option: "Physical Injury", isSelected: false },
       { option: "Cholesterol", isSelected: false },
+      { option: "None", isSelected: false },
     ],
   },
 ];

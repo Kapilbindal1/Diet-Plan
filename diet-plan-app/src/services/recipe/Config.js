@@ -8,4 +8,7 @@ export default {
   genrateMealWithEmailPdf: {
     path: `send-mail-with-generated-pdf`,
   },
+  generateRecipe: {
+    path: "generate-recipe",
+  },
 };

@@ -34,11 +34,23 @@ export const recipeSlice = createSlice({
         };
       },
     },
+    genrateMealRecipe: {
+      reducer: (state) => {},
+      prepare: (meal, successCallback, failureCallback) => {
+        return {
+          payload: { meal, successCallback, failureCallback },
+        };
+      },
+    },
   },
 });
 
 // Action creators are generated for each case reducer function
-export const { getRecipeData, genratePdf, genratePdfWithEmail } =
-  recipeSlice.actions;
+export const {
+  getRecipeData,
+  genratePdf,
+  genratePdfWithEmail,
+  genrateMealRecipe,
+} = recipeSlice.actions;
 
 export default recipeSlice.reducer;
