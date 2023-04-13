@@ -17,7 +17,6 @@ const SlickSlider = () => {
   const [value, setValue] = useState(0);
   const [answers, setAnswers] = useState({});
   const [quesAnswArr, setQuesAnswArr] = useState(detail);
-  const [questionValue, setQuestionValue] = useState([]);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -33,8 +32,7 @@ const SlickSlider = () => {
     if (value === quesAnswArr.length - 1) {
       return;
     }
-    // handleNextButton(questionValue);
-    setValue((prev) => prev + 1);
+    handleNextButton(quesAnswArr[value]);
   };
 
   const onHandleAnswers = (
@@ -69,7 +67,6 @@ const SlickSlider = () => {
   };
 
   const handleNextButton = (item) => {
-    console.log("====>item", item);
     let check = false;
     const regex = /^[0-9]*$/;
     if (item.option_type === "list" && item.answer_type === null) {
@@ -204,7 +201,6 @@ const SlickSlider = () => {
                                 ? handleSubmit
                                 : () => {
                                     handleNextButton(item);
-                                    setQuestionValue(item);
                                   }
                             }
                           >
