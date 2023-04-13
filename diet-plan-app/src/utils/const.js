@@ -16,7 +16,7 @@ export const detail = [
       { option: "I want to lose weight", isSelected: false },
       { option: "I want to manage my medical conditions", isSelected: false },
       { option: "I want to improve my overall health", isSelected: false },
-      { option: "I want to learn more about HealthifyMe", isSelected: false },
+      { option: "I want to gain muscle", isSelected: false },
     ],
   },
   {
@@ -110,10 +110,12 @@ export const detail = [
   },
 ];
 
-export const dietNotes = [{ id: 1, img: water, title: '3-4 liters of Water' },
-{ id: 2, img: broccoli, title: 'More green Veggies' },
-{ id: 3, img: meditation, title: '10 mins Meditation' },
-{ id: 4, img: exercise, title: '45 mins of Exercise' },
-{ id: 5, img: sleeping, title: '08 hrs of Sleep' },
-{ id: 6, img: footprint, title: '10,000 Steps/day' },
-  ,]
+export const dietNotes = [
+  { id: 1, img: water, title: "3-4 liters of Water" },
+  { id: 2, img: broccoli, title: "More green Veggies" },
+  { id: 3, img: meditation, title: "10 mins Meditation" },
+  { id: 4, img: exercise, title: "45 mins of Exercise" },
+  { id: 5, img: sleeping, title: "08 hrs of Sleep" },
+  { id: 6, img: footprint, title: "10,000 Steps/day" },
+  ,
+];

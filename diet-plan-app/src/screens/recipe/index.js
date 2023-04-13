@@ -59,26 +59,26 @@ export const Recipe = () => {
     setIsDisclaimer(true);
   }, []);
 
-  useEffect(() => {
-    if (Object.keys(recipeData).length > 0)
-      dispatch(
-        genratePdf(
-          recipeData,
-          (base64Url1) => {
-            const pdfData = atob(base64Url1);
-            const byteArray = new Uint8Array(
-              pdfData.split("").map((char) => char.charCodeAt(0)),
-            );
-            const pdfBlob = new Blob([byteArray], { type: "application/pdf" });
-            const pdfUrl = URL.createObjectURL(pdfBlob);
-            setPdfUrl(pdfUrl);
-          },
-          (e) => {
-            console.log(e);
-          },
-        ),
-      );
-  }, [Object.keys(recipeData).length]);
+  // useEffect(() => {
+  //   if (Object.keys(recipeData).length > 0)
+  //     dispatch(
+  //       genratePdf(
+  //         recipeData,
+  //         (base64Url1) => {
+  //           const pdfData = atob(base64Url1);
+  //           const byteArray = new Uint8Array(
+  //             pdfData.split("").map((char) => char.charCodeAt(0)),
+  //           );
+  //           const pdfBlob = new Blob([byteArray], { type: "application/pdf" });
+  //           const pdfUrl = URL.createObjectURL(pdfBlob);
+  //           setPdfUrl(pdfUrl);
+  //         },
+  //         (e) => {
+  //           console.log(e);
+  //         },
+  //       ),
+  //     );
+  // }, [Object.keys(recipeData).length]);
 
   const handlePdfWithEmail = () => {
     setIsModal(true);
@@ -122,21 +122,29 @@ export const Recipe = () => {
           )}
           <div className="container">
             <div className="d-flex flex-wrap mt-4 justify-content-between align-items-center">
-              <img className="logo" src={logo} alt="logo" onClick={() => navigate("/detail")} />
+              <img
+                className="logo"
+                src={logo}
+                alt="logo"
+                onClick={() => {
+                  navigate("/detail");
+                  window?.location.reload();
+                }}
+              />
               <div className="d-flex flex-wrap mt-3">
-                <a
+                {/* <a
                   className="secondary-outline me-3"
                   href={pdfurl1}
                   download={"diet-meal"}
                 >
                   Download PDF
-                </a>
+                </a> */}
 
                 <button
                   className="secondary-outline"
                   onClick={handlePdfWithEmail}
                 >
-                  Send Mail
+                  Get PDF
                 </button>
               </div>
             </div>
@@ -218,7 +226,7 @@ export const Recipe = () => {
                             <img src={img} alt="proteins" /> {title}
                           </span>
                         </p>
-                      )
+                      );
                     })}
                   </div>
                 </div>

@@ -150,6 +150,7 @@ const SlickSlider = () => {
                           <div>
                             {item?.answer_type === "input" && (
                               <input
+                                type="number"
                                 className="answer-input"
                                 placeholder="Type your answer here..."
                                 value={
