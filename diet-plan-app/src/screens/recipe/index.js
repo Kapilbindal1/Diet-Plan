@@ -83,6 +83,7 @@ export const Recipe = () => {
 
   const handelRecipeDetail = (mealData) => {
     setMealRecipeData(mealData);
+    setIsRecipeLoader(true);
     if (mealData.meal?.length > 0) {
       dispatch(
         genrateMealRecipe(

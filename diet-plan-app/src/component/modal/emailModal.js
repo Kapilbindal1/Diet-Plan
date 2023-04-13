@@ -21,16 +21,47 @@ import { useDispatch, useSelector } from "react-redux";
 const EmailModalPop = ({ isModal, setIsModal, recipeData }) => {
   const dispatch = useDispatch();
   const [email, setEmail] = useState("");
+  const [error, setError] = useState("");
 
-  const onEmailChange = (e) => [setEmail(e.target.value)];
-
+  const onEmailChange = (e) => {
+    setEmail(e.target.value);
+    const value = validateEmail(e.target.value);
+    if (value) {
+      setError("");
+    } else {
+      setError("Enter your valid email");
+    }
+  };
+  const validateEmail = (email) => {
+    const regex =
+      /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
+    if (!regex.test(email)) {
+      return false;
+    } else {
+      return true;
+    }
+  };
+  const testEmail = (email) => {
+    if (!email) {
+      setError("Enter your email");
+    } else {
+      if (!validateEmail(email)) {
+        setError("Enter your valid email");
+      }
+    }
+  };
+  console.log("===>error", error);
   const handleGetPlan = () => {
+    testEmail(email);
+    if (error.length > 0) {
+      return;
+    }
     let obj = { recipeData: recipeData, email: email };
     dispatch(
       genratePdfWithEmail(
         obj,
-        (res) => { },
-        (e) => { },
+        (res) => {},
+        (e) => {},
       ),
     );
 
@@ -42,10 +73,17 @@ const EmailModalPop = ({ isModal, setIsModal, recipeData }) => {
       <Modal
         className="common-modal small-modal modal-dialog-centered"
         isOpen={isModal}
-      // toggle={toggle}
+        // toggle={toggle}
       >
         <div className="close-icon">
-          <img src={close} alt="close" onClick={() => setIsModal(false)} />
+          <img
+            src={close}
+            alt="close"
+            onClick={() => {
+              setIsModal(false);
+              setError("");
+            }}
+          />
         </div>
         <ModalHeader>Your personalised meal plan</ModalHeader>
         <ModalBody>
@@ -56,6 +94,7 @@ const EmailModalPop = ({ isModal, setIsModal, recipeData }) => {
               placeholder="Enter Your Email"
               onChange={onEmailChange}
             />
+            <div style={{ color: "red", fontSize: 14 }}>{error}</div>
           </FormGroup>
         </ModalBody>
         <ModalFooter className="justify-content-center">
