@@ -3,6 +3,13 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  .spinner-border {
+    border: 0.25em solid #e3664f;
+    border-right-color: transparent;
+  }
+  p{
+    font-size: 16px !important;
+  }
 }
 .primary-solid {
   background: $theme-color;
@@ -30,13 +37,17 @@
   width: 228px;
   height: 46px;
   font-weight: 700;
-  font-size: 15px;
+  font-size: 14px;
   line-height: 27px;
   color: $theme-color;
   display: flex;
   align-items: center;
   justify-content: center;
   text-decoration: none;
+  @media all and (max-width:$tablet) {
+    max-width: 15vh;
+    font-size: 13px;
+  }
   &:hover {
     color: #ffffff;
     background-color: $theme-color;
@@ -63,6 +74,9 @@
 }
 .common-modal {
   max-width: 70%;
+  @media all and (max-width:$tablet) {
+    max-width: 98%;
+  }
   .loader {
     height: 40vh;
   }
@@ -72,9 +86,20 @@
     line-height: 20px;
     color: #171717;
     margin-bottom: 23px;
+    @media all and (max-width:$tablet) {
+      margin-bottom: 15px;
+      font-size: 16px;
+    }
   }
   .ingredients {
     padding: 30px;
+    @media all and (max-width:$largeDesktop) {
+      padding: 15px;
+    }
+    @media all and (max-width:$tablet) {
+      padding: 0px;
+    }
+   
   }
   .scroll-bar {
     max-height: 400px;
@@ -102,6 +127,12 @@
       display: flex;
       width: 100%;
       justify-content: space-between;
+      @media all and (max-width:$largeDesktop) {
+        display: block;
+        text-align: left !important;
+        font-size: 16px !important;
+        padding-right: 30px;
+      }
     }
     .nutreints-calc {
       display: flex;
@@ -111,6 +142,9 @@
         margin-right: 21px;
         font-size: 12px;
         color: #565656;
+        @media all and (max-width:$tablet) {
+          margin-right: 8px;
+        }
         img {
           margin-right: 6px;
           width: 16px;
@@ -125,10 +159,21 @@
     font-size: 14px;
     line-height: 30px;
     color: #565656;
+    @media all and (max-width:$tablet) {
+      font-size: 12px;
+      line-height: 20px;
+    }
   }
   .cooking-steps {
     padding-left: 45px;
     border-left: 1px solid #d9dee2;
+    @media all and (max-width:$largeDesktop) {
+      padding-left: 20px;
+    }
+    @media all and (max-width:$tablet) {
+      border-left: none;
+      padding: 0;
+    }
     .steps-list {
       position: relative;
       padding-left: 25px;
@@ -144,6 +189,9 @@
   }
   .cooking-modal-body {
     padding: 0;
+    @media all and (max-width:$tablet) {
+      padding: 15px;
+    }
   }
   &.small-modal {
     max-width: 548px;
@@ -151,10 +199,13 @@
   .close-icon {
     position: absolute;
     right: 20px;
-    top: 17px;
+    top: 12px;
     cursor: pointer;
     img {
       width: 14px;
+      @media all and (max-width:$tablet) {
+        width: 12px;
+      }
     }
   }
   .modal-content {
@@ -195,5 +246,11 @@
 .form-control {
   &:focus {
     box-shadow: none;
+  }
+}
+.logo{
+  cursor:pointer;
+  @media all and (max-width:$tablet) {
+    width: 120px;
   }
 }

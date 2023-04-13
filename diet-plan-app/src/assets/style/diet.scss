@@ -1,11 +1,27 @@
 .diet-cards {
   padding: 25px;
-  min-height: 300px;
+  min-height: 325px;
   background: #FFFFFF;
   box-shadow: 0px 0px 43px 8px rgba(0, 0, 0, 0.06);
   border-radius: 20px;
   .secondary-outline{
     width: 143px;
+  }
+  &.diet-notes{
+    .meal-title {
+      color: $theme-color;
+      margin-bottom: 6px;
+    }
+    .meals {
+      margin-bottom: 20px;
+      .nutrients-value {
+        width: 100%;
+        display: flex;
+        img {
+          margin-right: 15px;
+      }
+      }
+    }
   }
   .total-calories {
     font-weight: 600;
@@ -13,6 +29,9 @@
     line-height: 24px;
     color: $theme-color;
     display: flex;
+    @media all and (max-width:$tablet) {
+      font-size: 14px;
+    }
     img {
       margin-right: 6px;
   }
@@ -25,21 +44,20 @@
 }
   .meal-title {
     font-weight: 700;
-    font-size: 22px;
+    font-size: 20px;
     color: #171717;
     text-transform: capitalize;
     margin-bottom: 0;
   }
   .meal-name{
     font-weight: 600;
-    font-size: 17px;
+    font-size: 16px;
     color: #565656;
-    line-height: 35px;
-    margin-bottom: 15px;
+    margin-bottom: 10px;
   }
   .nutrients-title{
     font-weight: 500;
-    font-size: 16px;
+    font-size: 15px;
     color: #171717;
     margin-bottom: 18px;
   }
@@ -57,6 +75,10 @@
       font-weight: 500;
       font-size: 16px;
       color: #565656;
+      display: flex;
+      @media all and (max-width:$tablet) {
+        font-size: 14px;
+      }
       img{
         margin-right: 10px;
         width: 16px;
@@ -67,8 +89,11 @@
     .nutrients-value {
       width: 60%;
       font-weight: 500;
-      font-size: 16px;
+      font-size: 15px;
       color: #565656;
+      @media all and (max-width:$tablet) {
+        font-size: 14px;
+      }
     }
   }
 }

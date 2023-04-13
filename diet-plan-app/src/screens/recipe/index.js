@@ -16,6 +16,7 @@ import proteins from "../../assets/images/proteins.svg";
 import kcal from "../../assets/images/kcal.svg";
 import carbs from "../../assets/images/carbs.svg";
 import RecipeDetailModalPop from "../../component/modal/recipeDetailModal";
+import { dietNotes } from "../../utils/const";
 
 export const Recipe = () => {
   // const [recipeData, setRecipeData] = useState({});
@@ -121,10 +122,10 @@ export const Recipe = () => {
           )}
           <div className="container">
             <div className="d-flex flex-wrap mt-4 justify-content-between align-items-center">
-              <img src={logo} alt="logo" onClick={() => navigate("/detail")} />
-              <div className="d-flex flex-wrap">
+              <img className="logo" src={logo} alt="logo" onClick={() => navigate("/detail")} />
+              <div className="d-flex flex-wrap mt-3">
                 <a
-                  className="secondary-outline me-4"
+                  className="secondary-outline me-3"
                   href={pdfurl1}
                   download={"diet-meal"}
                 >
@@ -139,7 +140,7 @@ export const Recipe = () => {
                 </button>
               </div>
             </div>
-            <div className="container mt-5">
+            <div className="container mt-4">
               <div className="row">
                 {Object.keys(recipeData).length > 0 &&
                   Object.entries(recipeData?.dietPlan).map(
@@ -205,6 +206,22 @@ export const Recipe = () => {
                       );
                     },
                   )}
+                <div className="col-lg-4 col-xs-12 mb-3">
+                  <div className="diet-cards diet-notes">
+                    <div className="meal-header">
+                      <h3 className="meal-title">Diet Notes</h3>
+                    </div>
+                    {dietNotes.map(({ id, img, title }) => {
+                      return (
+                        <p className="meals" key={id}>
+                          <span className="nutrients-value">
+                            <img src={img} alt="proteins" /> {title}
+                          </span>
+                        </p>
+                      )
+                    })}
+                  </div>
+                </div>
               </div>
             </div>
           </div>

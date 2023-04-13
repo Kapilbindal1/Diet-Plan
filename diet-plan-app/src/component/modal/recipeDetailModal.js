@@ -51,7 +51,7 @@ const RecipeDetailModalPop = ({
   isRecipeLoader,
   setMealRecipePlanData,
 }) => {
-  useEffect(() => {}, [mealRecipePlanData]);
+  useEffect(() => { }, [mealRecipePlanData]);
   console.log("===>mealRecipeData", mealRecipePlanData);
 
   const handleModalClose = () => {
@@ -66,7 +66,7 @@ const RecipeDetailModalPop = ({
         isOpen={isRecipeDetail}
       >
         {isRecipeLoader ? (
-          <Loader />
+          <Loader isRecipeLoader={isRecipeLoader} />
         ) : (
           <div>
             <div className="close-icon">
@@ -102,7 +102,7 @@ const RecipeDetailModalPop = ({
                     <h5 className="recipe-title">Ingredients</h5>
                     <p>
                       {mealRecipePlanData.ingredients?.length > 0 &&
-                        mealRecipePlanData.ingredients.join(" ")}
+                        mealRecipePlanData.ingredients.join(", ")}
                     </p>
                   </div>
                 </div>
