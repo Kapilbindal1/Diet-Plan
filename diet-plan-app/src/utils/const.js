@@ -38,6 +38,18 @@ export const detail = [
   },
   {
     id: 4,
+    question: "Select your dietary preference *",
+    type: "dietaryPreference",
+    option_type: "list",
+    answer_type: null,
+    answers: [
+      { option: "Vegetarian", isSelected: false },
+      { option: "Non-Vegetarian", isSelected: false },
+      { option: "Vegan", isSelected: false },
+    ],
+  },
+  {
+    id: 5,
     question: "Please enter your current weight below *",
     type: "weight",
     description: ["in Kilograms (kg)"],
@@ -45,7 +57,7 @@ export const detail = [
     answer_type: "input",
   },
   {
-    id: 5,
+    id: 6,
     question: "How tall are you? Please reply in centimetres(cm) *",
     description: [
       "You can refer to this chart for your height in cm.",
@@ -75,7 +87,7 @@ export const detail = [
     // ],
   },
   {
-    id: 6,
+    id: 7,
     question: "Are you at risk of any medical condition? *",
     type: "medicalHistory",
     option_type: "list",

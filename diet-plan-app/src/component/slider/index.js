@@ -30,7 +30,7 @@ const SlickSlider = () => {
   };
 
   const handleSlideNext = () => {
-    if (value === 5) {
+    if (value === quesAnswArr.length - 1) {
       return;
     }
     // handleNextButton(questionValue);
@@ -45,7 +45,6 @@ const SlickSlider = () => {
     answerIndex,
   ) => {
     setAnswers({ ...answers, [type]: option.toLowerCase() });
-
     if (ansType === "input") {
       return;
     }
@@ -55,7 +54,7 @@ const SlickSlider = () => {
       answer.isSelected = index === answerIndex;
     });
     newQuestionsState[questionIndex].answers = newAnswers;
-    if (value !== 5) {
+    if (value !== quesAnswArr.length - 1) {
       setValue((prev) => prev + 1);
     }
     setQuesAnswArr(newQuestionsState);
@@ -70,8 +69,9 @@ const SlickSlider = () => {
   };
 
   const handleNextButton = (item) => {
+    console.log("====>item", item);
     let check = false;
-
+    const regex = /^[0-9]*$/;
     if (item.option_type === "list" && item.answer_type === null) {
       check = item?.answers?.some((item) => {
         if (item.isSelected === false) {
@@ -81,9 +81,13 @@ const SlickSlider = () => {
         }
       });
     } else if (item.option_type === null && item.answer_type === "input") {
-      if (answers.height !== undefined) {
+      if (answers.height !== undefined && regex.test(answers.height)) {
         check = true;
-      } else if (answers.weight !== undefined && item.type !== "height") {
+      } else if (
+        answers.weight !== undefined &&
+        item.type !== "height" &&
+        regex.test(answers.weight)
+      ) {
         check = true;
       }
     } else {
@@ -125,14 +129,16 @@ const SlickSlider = () => {
               quesAnswArr.map((item, questionIndex) => {
                 return (
                   <div
-                    className={`row align-items-center slides ${value === questionIndex ? "active-slide" : ""
-                      }`}
+                    className={`row align-items-center slides ${
+                      value === questionIndex ? "active-slide" : ""
+                    }`}
                   >
                     <div className="col-lg-6 col-sm-12 col-md-8 p-0">
                       {value === questionIndex && (
                         <div className="slider-content animate__animated animate__backInUp">
-                          <h5 className="steps">{`Step 0${questionIndex + 1
-                            }`}</h5>
+                          <h5 className="steps">{`Step 0${
+                            questionIndex + 1
+                          }`}</h5>
                           <h2>{item.question}</h2>
                           <h6 className="description">
                             {item?.description?.map((des) => {
@@ -149,6 +155,11 @@ const SlickSlider = () => {
                               <input
                                 className="answer-input"
                                 placeholder="Type your answer here..."
+                                value={
+                                  item.type === "weight"
+                                    ? answers.weight
+                                    : answers.height
+                                }
                                 onChange={(e) => {
                                   let value = e.target.value;
                                   onHandleAnswers(
@@ -189,15 +200,17 @@ const SlickSlider = () => {
                           <button
                             className="primary-solid"
                             onClick={
-                              value === 5
+                              value === quesAnswArr.length - 1
                                 ? handleSubmit
                                 : () => {
-                                  handleNextButton(item);
-                                  setQuestionValue(item);
-                                }
+                                    handleNextButton(item);
+                                    setQuestionValue(item);
+                                  }
                             }
                           >
-                            {value === 5 ? "Submit" : "Next"}
+                            {value === quesAnswArr.length - 1
+                              ? "Submit"
+                              : "Next"}
                           </button>
                         </div>
                       )}
@@ -230,7 +243,7 @@ const SlickSlider = () => {
                 handleSlideNext();
               }}
             >
-              {value === 5 ? (
+              {value === quesAnswArr.length - 1 ? (
                 <img src={prev} alt="prev" />
               ) : (
                 <img
@@ -242,7 +255,6 @@ const SlickSlider = () => {
             </button>
           </div>
         </div>
-
       </div>
     </div>
   );

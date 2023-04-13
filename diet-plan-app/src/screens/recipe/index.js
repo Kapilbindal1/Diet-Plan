@@ -6,6 +6,7 @@ import {
   genratePdfWithEmail,
   genrateMealRecipe,
 } from "../../redux/reducer/recipe";
+import { useNavigate } from "react-router-dom";
 import Loader from "../../component/loader";
 import logo from "../../assets/images/logo-orange.svg";
 import EmailModalPop from "../../component/modal/emailModal";
@@ -28,6 +29,7 @@ export const Recipe = () => {
   const [isRecipeLoader, setIsRecipeLoader] = useState(true);
 
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const recipeData = useSelector((state) => state.user.userData);
   const isLoading = useSelector((state) => state.user.isLoading);
@@ -89,12 +91,11 @@ export const Recipe = () => {
         genrateMealRecipe(
           mealData.meal,
           (res) => {
-            console.log("====>mealRecipeData", res);
             setMealRecipePlanData(res);
             setIsRecipeLoader(false);
           },
           (e) => {
-            console.log("====>meal recipe plan detail", e);
+            console.debug("==>e", e);
             setIsRecipeLoader(false);
           },
         ),
@@ -120,7 +121,7 @@ export const Recipe = () => {
           )}
           <div className="container">
             <div className="d-flex flex-wrap mt-4 justify-content-between align-items-center">
-              <img src={logo} alt="logo" />
+              <img src={logo} alt="logo" onClick={() => navigate("/detail")} />
               <div className="d-flex flex-wrap">
                 <a
                   className="secondary-outline me-4"
@@ -162,7 +163,8 @@ export const Recipe = () => {
                               </h6>
                               <p className="meals">
                                 <span className="nutrients">
-                                  <img src={proteins} alt="proteins" /> Protein:
+                                  <img src={proteins} alt="proteins" />
+                                  Proteins:
                                 </span>
                                 <span className="nutrients-value">
                                   {mealData.nutrition?.proteins}
