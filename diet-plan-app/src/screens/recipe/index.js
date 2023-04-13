@@ -150,9 +150,7 @@ export const Recipe = () => {
                               <h3 className="meal-title">{mealName}</h3>
                               <span className="total-calories">
                                 <img src={kcal} alt="kcal" />
-                                {mealData.nutrition?.Calories
-                                  ? mealData.nutrition?.Calories
-                                  : mealData.totalCalories}
+                                {mealData.nutrition?.calories}
                               </span>
                             </div>
 
@@ -167,9 +165,7 @@ export const Recipe = () => {
                                   <img src={proteins} alt="proteins" /> Protein:
                                 </span>
                                 <span className="nutrients-value">
-                                  {mealData.nutrition?.Protein
-                                    ? mealData.nutrition?.Protein
-                                    : mealData.nutritionalValue?.Protein}
+                                  {mealData.nutrition?.proteins}
                                 </span>
                               </p>
                               <p className="meals">
@@ -179,9 +175,7 @@ export const Recipe = () => {
                                   Fats:
                                 </span>{" "}
                                 <span className="nutrients-value">
-                                  {mealData.nutrition?.Fats
-                                    ? mealData.nutrition?.Fats
-                                    : mealData.nutritionalValue?.Fats}
+                                  {mealData.nutrition?.fats}
                                 </span>
                               </p>
                               <p className="meals">
@@ -190,9 +184,7 @@ export const Recipe = () => {
                                   Carbs:
                                 </span>{" "}
                                 <span className="nutrients-value">
-                                  {mealData.nutrition?.Carbs
-                                    ? mealData.nutrition?.Carbs
-                                    : mealData.nutritionalValue?.Carbs}
+                                  {mealData.nutrition?.carbs}
                                 </span>
                               </p>
                               <p className="meals"></p>

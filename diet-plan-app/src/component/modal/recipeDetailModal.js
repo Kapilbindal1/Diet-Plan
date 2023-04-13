@@ -77,36 +77,20 @@ const RecipeDetailModalPop = ({
               <div className="nutreints-calc">
                 <div className="nutreints-calc-val">
                   <img src={proteins} alt="proteins" />
-                  <span>
-                    {mealRecipeData.nutrition?.Protein
-                      ? mealRecipeData.nutrition?.Protein
-                      : mealRecipeData.nutritionalValue?.Protein}
-                  </span>
+                  <span>{mealRecipeData.nutrition?.proteins}</span>
                 </div>
                 <div className="nutreints-calc-val">
                   <img src={fats} alt="fats" />
-                  <span>
-                    {mealRecipeData.nutrition?.Fats
-                      ? mealRecipeData.nutrition?.Fats
-                      : mealRecipeData.nutritionalValue?.Fats}
-                  </span>
+                  <span>{mealRecipeData.nutrition?.fats}</span>
                 </div>
                 <div className="nutreints-calc-val">
                   {" "}
                   <img src={carbs} alt="carbs" />
-                  <span>
-                    {mealRecipeData.nutrition?.Carbs
-                      ? mealRecipeData.nutrition?.Carbs
-                      : mealRecipeData.nutritionalValue?.Carbs}
-                  </span>
+                  <span>{mealRecipeData.nutrition?.carbs}</span>
                 </div>
                 <div className="nutreints-calc-val">
                   <img src={kcal} alt="kcal" />
-                  <span>
-                    {mealRecipeData.nutrition?.Calories
-                      ? mealRecipeData.nutrition?.Calories
-                      : mealRecipeData?.totalCalories}
-                  </span>
+                  <span>{mealRecipeData.nutrition?.calories}</span>
                 </div>
               </div>
             </ModalHeader>
