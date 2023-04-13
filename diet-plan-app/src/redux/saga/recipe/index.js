@@ -52,12 +52,13 @@ function* genrateMealPdfRequest(action) {
 }
 
 function* genrateMealPdfWithEmailRequest(action) {
-  const { recipeData, email } = action.payload.mealDataWithEmail;
+  const { recipeData, email, userId } = action.payload.mealDataWithEmail;
   try {
     const response = yield call(
       services.genrateMealPdfWithEmail,
       recipeData,
       email,
+      userId,
     );
     console.log("===>response", response);
     const { status, statusText, data = [] } = response || {};

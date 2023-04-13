@@ -11,7 +11,6 @@ import logo from "../../assets/images/logo-orange.svg";
 import next from "../../assets/images/next.svg";
 import prev from "../../assets/images/prev.svg";
 import { addUserAnswerRequest } from "../../redux/reducer/user";
-import { userAnswerValidateDetail } from "../../utils/validation";
 
 const SlickSlider = () => {
   const [value, setValue] = useState(0);

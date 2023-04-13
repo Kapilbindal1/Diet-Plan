@@ -3,6 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   userData: {},
   isLoading: false,
+  userId: "",
 };
 
 export const userSlice = createSlice({
@@ -23,6 +24,10 @@ export const userSlice = createSlice({
       state.userData = action.payload;
       state.isLoading = false;
     },
+    addUserDataId: (state, action) => {
+      state.userId = action.payload;
+      state.isLoading = false;
+    },
     userAnswerAddedFailure: (state, action) => {
       state.userData = {};
       state.isLoading = false;
@@ -35,6 +40,7 @@ export const {
   addUserAnswerRequest,
   userAnswerAddedSuccess,
   userAnswerAddedFailure,
+  addUserDataId,
 } = userSlice.actions;
 
 export default userSlice.reducer;

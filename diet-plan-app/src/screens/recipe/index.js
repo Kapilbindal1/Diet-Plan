@@ -33,7 +33,9 @@ export const Recipe = () => {
   const navigate = useNavigate();
 
   const recipeData = useSelector((state) => state.user.userData);
+
   const isLoading = useSelector((state) => state.user.isLoading);
+  const userId = useSelector((state) => state.user.userId);
   // useEffect(() => {
   //   if (!!userId)
   //     dispatch(
@@ -156,7 +158,9 @@ export const Recipe = () => {
                         <div className="col-lg-4 col-xs-12 mb-3" key={mealName}>
                           <div className="diet-cards">
                             <div className="meal-header">
-                              <h3 className="meal-title">{mealName}</h3>
+                              <h3 className="meal-title">
+                                {mealName.replace("_", " ")}
+                              </h3>
                               <span className="total-calories">
                                 <img src={kcal} alt="kcal" />
                                 {mealData.nutrition?.calories}
@@ -237,6 +241,7 @@ export const Recipe = () => {
             setIsModal={setIsModal}
             isModal={isModal}
             recipeData={recipeData}
+            userId={userId}
           />
           <RecipeDetailModalPop
             isRecipeDetail={isRecipeDetail}

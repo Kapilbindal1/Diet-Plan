@@ -18,7 +18,7 @@ import close from "../../assets/images/close.svg";
 
 import { useDispatch, useSelector } from "react-redux";
 
-const EmailModalPop = ({ isModal, setIsModal, recipeData }) => {
+const EmailModalPop = ({ isModal, setIsModal, recipeData, userId }) => {
   const dispatch = useDispatch();
   const [email, setEmail] = useState("");
   const [error, setError] = useState("");
@@ -56,7 +56,7 @@ const EmailModalPop = ({ isModal, setIsModal, recipeData }) => {
     if (error.length > 0) {
       return;
     }
-    let obj = { recipeData: recipeData, email: email };
+    let obj = { recipeData: recipeData, email: email, userId: userId };
     dispatch(
       genratePdfWithEmail(
         obj,

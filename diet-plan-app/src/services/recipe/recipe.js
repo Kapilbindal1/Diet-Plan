@@ -16,13 +16,14 @@ export const genrateMealPdf = (data) => {
   });
 };
 
-export const genrateMealPdfWithEmail = (data, email) => {
+export const genrateMealPdfWithEmail = (data, email, userId) => {
   const request = config.genrateMealWithEmailPdf;
   return postDataApi({
     path: request.path,
     data: {
       dietPlan: data.dietPlan,
       userEmailAddress: email,
+      userId: userId,
     },
   });
 };
