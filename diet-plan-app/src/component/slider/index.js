@@ -16,6 +16,7 @@ const SlickSlider = () => {
   const [value, setValue] = useState(0);
   const [answers, setAnswers] = useState({});
   const [quesAnswArr, setQuesAnswArr] = useState(detail);
+  const [error, setError] = useState("");
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -42,6 +43,7 @@ const SlickSlider = () => {
     answerIndex,
   ) => {
     setAnswers({ ...answers, [type]: option.toLowerCase() });
+    setError("");
     if (ansType === "input") {
       return;
     }
@@ -52,6 +54,7 @@ const SlickSlider = () => {
     });
     newQuestionsState[questionIndex].answers = newAnswers;
     if (value !== quesAnswArr.length - 1) {
+      setError("");
       setValue((prev) => prev + 1);
     }
     setQuesAnswArr(newQuestionsState);
@@ -66,6 +69,8 @@ const SlickSlider = () => {
   };
 
   const handleNextButton = (item) => {
+    console.log(item, "itemitem==>>222", answers);
+
     let check = false;
     const regex = /^[0-9]*$/;
     if (item.option_type === "list" && item.answer_type === null) {
@@ -77,26 +82,41 @@ const SlickSlider = () => {
         }
       });
     } else if (item.option_type === null && item.answer_type === "input") {
-      if (answers.height !== undefined) {
+      if (
+        answers.height !== undefined &&
+        answers.height !== "" &&
+        item.type !== "weight"
+      ) {
         check = true;
-      } else if (answers.weight !== undefined && item.type !== "height") {
+      } else if (
+        answers.weight !== undefined &&
+        answers.weight !== "" &&
+        item.type !== "height"
+      ) {
         check = true;
       }
     } else {
-      check = true;
+      check = false;
     }
 
     if (check) {
+      setError("");
       setValue((prev) => prev + 1);
     } else {
       if (item.answer_type === "input") {
-        if (item.type == "weight") {
-          alert(`Please enter your weight`);
+        if (item.type === "weight") {
+          setError(`Please enter your weight`);
         } else {
-          alert(`Please enter your height`);
+          setError(`Please enter your height`);
         }
       } else {
-        alert(`Please select ${item.type}`);
+        if (item.type === "fitnessGoals")
+          setError(`Please select your health goal`);
+        else if (item.type === "dietaryPreference") {
+          setError(`Please select your dietary preference`);
+        } else {
+          setError(`Please select your ${item.type}`);
+        }
       }
     }
   };
@@ -105,7 +125,7 @@ const SlickSlider = () => {
       dispatch(addUserAnswerRequest(answers));
       navigate("/recipe");
     } else {
-      alert(`Please select medical history`);
+      setError(`Please select your medical history`);
     }
   };
 
@@ -189,7 +209,9 @@ const SlickSlider = () => {
                               </h6>
                             );
                           })}
-
+                          <div style={{ color: "red", fontSize: 14 }}>
+                            {error}
+                          </div>
                           <button
                             className="primary-solid"
                             onClick={

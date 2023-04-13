@@ -81,17 +81,6 @@ export const detail = [
     type: "height",
     option_type: null,
     answer_type: "input",
-    // answers: [
-    //   { option: "150 is 4 feet 11 inches", isSelected: false },
-    //   { option: "155 is 5 feet 1 inch", isSelected: false },
-    //   { option: "160 is 5 feet 3 inches", isSelected: false },
-    //   { option: "165 is 5 feet 5 inches", isSelected: false },
-    //   { option: "170 is 5 feet 7 inches", isSelected: false },
-    //   { option: "175 is 5 feet 9 inches", isSelected: false },
-    //   { option: "180 is 5 feet 11 inches", isSelected: false },
-    //   { option: "185 is 6 feet 1 inch", isSelected: false },
-    //   { option: "190 is 6 feet 3 inches", isSelected: false },
-    // ],
   },
   {
     id: 7,
