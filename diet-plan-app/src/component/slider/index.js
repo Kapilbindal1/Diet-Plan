@@ -132,7 +132,13 @@ const SlickSlider = () => {
   return (
     <div className="container-fluid mt-0 mt-md-4">
       <div className="logo-header">
-        <img src={logo} alt="logo" />
+        <img
+          src={logo}
+          alt="logo"
+          onClick={() => {
+            window.location.reload();
+          }}
+        />
       </div>
       <div className="slider-wraper">
         <div className="container">
