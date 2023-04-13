@@ -1,5 +1,4 @@
 export const userAnswerValidateDetail = (data) => {
-  console.log("====>data", data);
   const errors = {};
   if (!data.age) {
     errors["age"] = "Select your age";

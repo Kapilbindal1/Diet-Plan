@@ -28,7 +28,6 @@ export const recipeSlice = createSlice({
     genratePdfWithEmail: {
       reducer: (state) => {},
       prepare: (mealDataWithEmail, successCallback, failureCallback) => {
-        console.log("====>mealDataWithEmail", mealDataWithEmail);
         return {
           payload: { mealDataWithEmail, successCallback, failureCallback },
         };

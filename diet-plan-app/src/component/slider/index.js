@@ -78,13 +78,9 @@ const SlickSlider = () => {
         }
       });
     } else if (item.option_type === null && item.answer_type === "input") {
-      if (answers.height !== undefined && regex.test(answers.height)) {
+      if (answers.height !== undefined) {
         check = true;
-      } else if (
-        answers.weight !== undefined &&
-        item.type !== "height" &&
-        regex.test(answers.weight)
-      ) {
+      } else if (answers.weight !== undefined && item.type !== "height") {
         check = true;
       }
     } else {

@@ -34,7 +34,6 @@ export const Recipe = () => {
 
   const recipeData = useSelector((state) => state.user.userData);
   const isLoading = useSelector((state) => state.user.isLoading);
-  console.log("====>recipeData", recipeData);
   // useEffect(() => {
   //   if (!!userId)
   //     dispatch(

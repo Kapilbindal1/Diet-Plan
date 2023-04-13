@@ -53,7 +53,6 @@ function* genrateMealPdfRequest(action) {
 
 function* genrateMealPdfWithEmailRequest(action) {
   const { recipeData, email } = action.payload.mealDataWithEmail;
-  console.log("====>action", recipeData, email, action.payload);
   try {
     const response = yield call(
       services.genrateMealPdfWithEmail,
