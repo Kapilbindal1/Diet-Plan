@@ -1,3 +1,4 @@
+@import "variable.scss";
 @import "bootstrap/dist/css/bootstrap.min.css";
 @import "animate.css";
 @import "./diet.scss";
@@ -13,24 +14,40 @@ body {
 }
 .logo-header {
   padding: 20px 90px;
+  @media all and (max-width:$tablet) {
+    padding: 2rem;
+    text-align: center;
+  }
 }
 .slider-wraper {
   padding: 2rem;
   height: 90vh;
   position: relative;
   transition: all 600ms ease 0s;
+  @media all and (max-width:$tablet) {
+    height: unset;
+    padding: 0;
+  }
   .slider-content {
     background: #ffffff;
     box-shadow: 0px 0px 43px 8px rgba(0, 0, 0, 0.06);
     border-radius: 20px;
-    padding: 39px 57px;
+    padding: 2rem 3rem;
     transition: all 600ms ease 0s;
+    @media all and (max-width:$tablet) {
+     padding: 1rem;
+     line-height: 25px;
+    }
     .steps {
       font-weight: 700;
       font-size: 20px;
       line-height: 30px;
       color: rgba(0, 0, 0, 0.24);
       margin-bottom: 10px;
+      @media all and (max-width:$tablet) {
+        margin:0;
+        font-size: 16px;
+       }
     }
     h2 {
       font-family: "Inter";
@@ -39,6 +56,9 @@ body {
       font-size: 25px;
       line-height: 37px;
       color: #000000;
+      @media all and (max-width:$tablet) {
+       font-size: 1.2rem;
+      }
     }
     .primary-solid {
       margin-top: 30px;
@@ -59,7 +79,9 @@ body {
       border-bottom: 1px solid #a8a8a8;
       box-shadow: none;
       background-color: transparent;
-      margin-top: 29px;
+      margin-top: 15px;
+      font-size: 14px;
+      width: 100%;
       &:focus {
         outline: none;
         box-shadow: none;
@@ -77,12 +99,28 @@ body {
     padding: 8px 6px;
     color: #171717;
     cursor: pointer;
-    &.active {
-      border: 1px solid #e3664f;
-      color: #e3664f;
+    position: relative;
+    padding-left: 50px;
+    &:hover{
+      border: 1px solid $theme-color;
+      color: $theme-color;
       .option {
-        background: #e3664f;
-        border: 1px solid #e3664f;
+        background: $theme-color;
+        border: 1px solid $theme-color;
+        color: #ffffff;
+      }
+    }
+    @media all and (max-width:$tablet) {
+      font-size: 0.9rem;
+      display: flex;
+      align-items: center;
+     }
+    &.active {
+      border: 1px solid $theme-color;
+      color: $theme-color;
+      .option {
+        background: $theme-color;
+        border: 1px solid $theme-color;
         color: #ffffff;
       }
     }
@@ -100,16 +138,25 @@ body {
       height: 30px;
       text-align: center;
       margin-right: 13px;
+      position: absolute;
+      left: 7px;
     }
   }
 }
 .navigation {
   position: absolute;
-  right: 100px;
-  bottom: 100px;
+  right: 10%;
+  bottom: 10%;
   background: #ffffff;
   box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.1);
   border-radius: 3px;
+  margin-top: 15px;
+  margin-right: 0;
+  margin-left: auto;
+  @media (max-width:$tablet) {
+   position: unset;
+   width: fit-content;
+  }
   button {
     border: none;
     background-color: white;
@@ -117,7 +164,16 @@ body {
 }
 .slides {
   display: none;
+  .slider-img{
+    width: 100%;
+    @media (max-width:$tablet) {
+      display: none;
+    }
+  }
 }
 .active-slide {
   display: inline-flex;
+  @media (max-width:$tablet) {
+    display: block;
+  }
 }

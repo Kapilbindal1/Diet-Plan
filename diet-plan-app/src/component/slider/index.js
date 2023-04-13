@@ -114,7 +114,7 @@ const SlickSlider = () => {
   };
 
   return (
-    <div className="container-fluid mt-4">
+    <div className="container-fluid mt-0 mt-md-4">
       <div className="logo-header">
         <img src={logo} alt="logo" />
       </div>
@@ -125,16 +125,14 @@ const SlickSlider = () => {
               quesAnswArr.map((item, questionIndex) => {
                 return (
                   <div
-                    className={`row align-items-center slides ${
-                      value === questionIndex ? "active-slide" : ""
-                    }`}
+                    className={`row align-items-center slides ${value === questionIndex ? "active-slide" : ""
+                      }`}
                   >
-                    <div className="col-md-6">
+                    <div className="col-lg-6 col-sm-12 col-md-8 p-0">
                       {value === questionIndex && (
                         <div className="slider-content animate__animated animate__backInUp">
-                          <h5 className="steps">{`Step 0${
-                            questionIndex + 1
-                          }`}</h5>
+                          <h5 className="steps">{`Step 0${questionIndex + 1
+                            }`}</h5>
                           <h2>{item.question}</h2>
                           <h6 className="description">
                             {item?.description?.map((des) => {
@@ -183,7 +181,7 @@ const SlickSlider = () => {
                                 <span className="option">
                                   {getAlaphabet(answerIndex)}
                                 </span>
-                                {item2.option}
+                                <span>{item2.option}</span>
                               </h6>
                             );
                           })}
@@ -194,9 +192,9 @@ const SlickSlider = () => {
                               value === 5
                                 ? handleSubmit
                                 : () => {
-                                    handleNextButton(item);
-                                    setQuestionValue(item);
-                                  }
+                                  handleNextButton(item);
+                                  setQuestionValue(item);
+                                }
                             }
                           >
                             {value === 5 ? "Submit" : "Next"}
@@ -204,46 +202,47 @@ const SlickSlider = () => {
                         </div>
                       )}
                     </div>
-                    <div className="col-md-6">
-                      {<img width={800} height={600} src={Fruits} />}
+                    <div className="col-lg-6 col-sm-12  col-md-4 p-0">
+                      {<img className="slider-img" src={Fruits} />}
                     </div>
                   </div>
                 );
               })}
           </>
+          <div className="navigation">
+            <button
+              onClick={() => {
+                handleSlidePrev();
+              }}
+            >
+              {value === 0 ? (
+                <img
+                  src={prev}
+                  alt="prev"
+                  style={{ transform: "rotate(180deg)" }}
+                />
+              ) : (
+                <img src={next} alt="next" />
+              )}
+            </button>
+            <button
+              onClick={() => {
+                handleSlideNext();
+              }}
+            >
+              {value === 5 ? (
+                <img src={prev} alt="prev" />
+              ) : (
+                <img
+                  src={next}
+                  alt="next"
+                  style={{ transform: "rotate(180deg)" }}
+                />
+              )}
+            </button>
+          </div>
         </div>
-        <div className="navigation">
-          <button
-            onClick={() => {
-              handleSlidePrev();
-            }}
-          >
-            {value === 0 ? (
-              <img
-                src={prev}
-                alt="prev"
-                style={{ transform: "rotate(180deg)" }}
-              />
-            ) : (
-              <img src={next} alt="next" />
-            )}
-          </button>
-          <button
-            onClick={() => {
-              handleSlideNext();
-            }}
-          >
-            {value === 5 ? (
-              <img src={prev} alt="prev" />
-            ) : (
-              <img
-                src={next}
-                alt="next"
-                style={{ transform: "rotate(180deg)" }}
-              />
-            )}
-          </button>
-        </div>
+
       </div>
     </div>
   );

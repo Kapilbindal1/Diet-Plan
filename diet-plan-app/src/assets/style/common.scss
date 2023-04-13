@@ -5,7 +5,7 @@
   align-items: center;
 }
 .primary-solid {
-  background: #e3664f;
+  background: $theme-color;
   border-radius: 5px;
   font-family: "Inter";
   font-style: normal;
@@ -16,9 +16,14 @@
   width: 170px;
   height: 46px;
   border: unset;
+  @media all and (max-width:$tablet) {
+    width: 140px;
+    height: 40px;
+    font-size: 14px;
+  }
 }
 .secondary-outline {
-  border: 1px solid #e3664f;
+  border: 1px solid $theme-color;
   border-radius: 5px;
   border-radius: 5px;
   background-color: rgb(255, 255, 255);
@@ -27,14 +32,14 @@
   font-weight: 700;
   font-size: 15px;
   line-height: 27px;
-  color: #e3664f;
+  color: $theme-color;
   display: flex;
   align-items: center;
   justify-content: center;
   text-decoration: none;
   &:hover {
     color: #ffffff;
-    background-color: #e3664f;
+    background-color: $theme-color;
   }
 }
 .disclaimer {
@@ -168,13 +173,13 @@
       font-weight: 800;
       font-size: 20px;
       text-align: center;
-      color: #e3664f;
+      color: $theme-color;
     }
   }
   .modal-footer {
     border-top: none;
     button {
-      background-color: #e3664f;
+      background-color: $theme-color;
       border-radius: 5px;
       border: transparent;
       width: 150px;
