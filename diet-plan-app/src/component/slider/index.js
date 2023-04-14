@@ -148,27 +148,25 @@ const SlickSlider = () => {
               quesAnswArr.map((item, questionIndex) => {
                 return (
                   <div
-                    className={`row align-items-center slides ${
-                      value === questionIndex ? "active-slide" : ""
-                    }`}
+                    className={`row align-items-center slides ${value === questionIndex ? "active-slide" : ""
+                      }`}
                   >
                     <div className="col-lg-6 col-sm-12 col-md-8 p-0">
                       {value === questionIndex && (
                         <div className="slider-content animate__animated animate__backInUp">
-                          <h5 className="steps">{`Step 0${
-                            questionIndex + 1
-                          }`}</h5>
+                          <h5 className="steps">{`Step 0${questionIndex + 1
+                            }`}</h5>
                           <h2>{item.question}</h2>
-                          <h6 className="description">
+                          <>
                             {item?.description?.map((des) => {
                               return (
-                                <h6>
+                                <h6 className="description">
                                   {des}
                                   <br />
                                 </h6>
                               );
                             })}
-                          </h6>
+                          </>
                           <div>
                             {item?.answer_type === "input" && (
                               <input
@@ -225,8 +223,8 @@ const SlickSlider = () => {
                               value === quesAnswArr.length - 1
                                 ? handleSubmit
                                 : () => {
-                                    handleNextButton(item);
-                                  }
+                                  handleNextButton(item);
+                                }
                             }
                           >
                             {value === quesAnswArr.length - 1

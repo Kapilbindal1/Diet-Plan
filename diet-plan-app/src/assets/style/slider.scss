@@ -53,11 +53,12 @@ body {
       font-family: "Inter";
       font-style: normal;
       font-weight: 700;
-      font-size: 25px;
+      font-size: 23px;
       line-height: 37px;
       color: #000000;
       @media all and (max-width:$tablet) {
-       font-size: 1.2rem;
+       font-size: 1rem;
+       line-height: 25px;
       }
     }
     .primary-solid {
@@ -65,13 +66,16 @@ body {
     }
     .description {
       font-weight: 500;
-      font-size: 22px;
+      font-size: 18px;
       line-height: 27px;
       color: #171717;
+      @media (max-width:$tablet) {
+        font-size: 13px;
+        line-height: 20px;
+      }
     }
     .answer-input {
       font-weight: 500;
-      font-size: 22px;
       line-height: 27px;
       color: #000000;
       opacity: 0.4;
@@ -111,7 +115,7 @@ body {
       }
     }
     @media all and (max-width:$tablet) {
-      font-size: 0.9rem;
+      font-size: 0.8rem;
       display: flex;
       align-items: center;
      }
@@ -175,5 +179,24 @@ body {
   display: inline-flex;
   @media (max-width:$tablet) {
     display: block;
+  }
+}
+@keyframes backInUp {
+  0% {
+    -webkit-transform: translateY(1200px) scale(0.7);
+    transform: translateY(1200px) scale(0.7);
+    opacity: 0.7;
+  }
+
+  80% {
+    -webkit-transform: translateY(0px) scale(0.7);
+    transform: translateY(0px) scale(0.7);
+    opacity: 0.7;
+  }
+
+  100% {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+    opacity: 1;
   }
 }
