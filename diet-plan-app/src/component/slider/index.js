@@ -88,13 +88,17 @@ const SlickSlider = () => {
         answers.height !== "" &&
         item.type !== "weight"
       ) {
-        check = true;
+        if (Number(answers.height) >= 150 && Number(answers.height) <= 199) {
+          check = true;
+        }
       } else if (
         answers.weight !== undefined &&
         answers.weight !== "" &&
         item.type !== "height"
       ) {
-        check = true;
+        if (Number(answers.weight) >= 38 && Number(answers.weight) <= 180) {
+          check = true;
+        }
       } else if (
         answers.name !== undefined &&
         answers.name !== "" &&
@@ -113,9 +117,23 @@ const SlickSlider = () => {
     } else {
       if (item.answer_type === "input") {
         if (item.type === "weight") {
-          setError(`Please enter your weight`);
+          if (
+            answers?.weight?.length > 0 &&
+            !(Number(answers.weight) >= 38 && Number(answers.weight) <= 180)
+          ) {
+            setError(`Please enter a number between 38 and 180`);
+          } else {
+            setError(`Please enter your weight`);
+          }
         } else if (item.type === "height") {
-          setError(`Please enter your height`);
+          if (
+            answers?.height?.length > 0 &&
+            !(Number(answers.height) >= 150 && Number(answers.height) <= 199)
+          ) {
+            setError(`Please enter a number between 150 and 199`);
+          } else {
+            setError(`Please enter your height`);
+          }
         } else {
           setError(`Please enter your name`);
         }
