@@ -4,7 +4,7 @@ import { genrateMealRecipe } from "../../redux/reducer/recipe";
 import { userLogout } from "../../redux/reducer/user";
 import { useNavigate } from "react-router-dom";
 import Loader from "../../component/loader";
-import logo from "../../assets/images/logo-orange.svg";
+import logo from "../../assets/images/wb-logo.svg";
 import EmailModalPop from "../../component/modal/emailModal";
 import close from "../../assets/images/close.svg";
 import fats from "../../assets/images/fats.svg";
@@ -13,6 +13,7 @@ import kcal from "../../assets/images/kcal.svg";
 import carbs from "../../assets/images/carbs.svg";
 import RecipeDetailModalPop from "../../component/modal/recipeDetailModal";
 import { dietNotes } from "../../utils/const";
+import ErrorMsg from "../../component/errorMsg";
 
 export const Recipe = () => {
   // const [recipeData, setRecipeData] = useState({});
@@ -110,167 +111,158 @@ export const Recipe = () => {
 
   return (
     <React.Fragment>
-      {isError?.length > 0 ? (
-        <>
-          <img className="logo" src={logo} alt="logo" onClick={handleLogo} />
-          <div className="error-msg">
-            Sorry, the website is currently down for maintenance. We apologize
-            for any inconvenience this may cause. Please try again later.
-          </div>
-        </>
-      ) : (
-        <>
-          {isLoading ? (
-            <Loader />
-          ) : (
-            <>
-              {isDisclaimer && (
-                <p className="disclaimer">
-                  The diet plan suggestions provided by our app are generated
-                  using AI based on your input data. We strive to provide the
-                  best possible recommendations, but we cannot guarantee the
-                  accuracy, completeness, or usefulness of any information
-                  provided.
-                  {/* <img src={close} alt="close" onClick={() => setIsDisclaimer(false)} /> */}
-                </p>
-              )}
-              <div className="container">
-                <div className="d-flex flex-wrap mt-4 justify-content-between align-items-center">
-                  <img
-                    className="logo"
-                    src={logo}
-                    alt="logo"
-                    onClick={() => {
-                      navigate("/detail");
-                      window?.location.reload();
-                    }}
-                  />
-                  <div className="d-flex flex-wrap mt-3">
-                    {/* <a
-                  className="secondary-outline me-3"
-                  href={pdfurl1}
-                  download={"diet-meal"}
-                >
-                  Download PDF
-                </a> */}
+      <>
+        {isLoading ? (
+          <Loader />
+        ) : isError.length > 0 ? (
+          <ErrorMsg handleLogo={handleLogo} />
+        ) : (
+          <div>
+            {isDisclaimer && (
+              <p className="disclaimer">
+                The diet plan suggestions provided by our app are generated
+                using AI based on your input data. We strive to provide the best
+                possible recommendations, but we cannot guarantee the accuracy,
+                completeness, or usefulness of any information provided.
+                {/* <img src={close} alt="close" onClick={() => setIsDisclaimer(false)} /> */}
+              </p>
+            )}
+            <div className="container">
+              <div className="d-flex px-3 flex-wrap mt-4 justify-content-between align-items-center">
+                <img
+                  className="logo"
+                  src={logo}
+                  alt="logo"
+                  onClick={() => {
+                    navigate("/detail");
+                    window?.location.reload();
+                  }}
+                />
+                <div className="d-flex flex-wrap mt-3">
+                  {/* <a
+      className="secondary-outline me-3"
+      href={pdfurl1}
+      download={"diet-meal"}
+    >
+      Download PDF
+    </a> */}
 
-                    <button
-                      className="secondary-outline"
-                      onClick={handlePdfWithEmail}
-                    >
-                      Get PDF
-                    </button>
-                  </div>
+                  <button
+                    className="secondary-outline"
+                    onClick={handlePdfWithEmail}
+                  >
+                    Get PDF
+                  </button>
                 </div>
-                <div className="container mt-4">
-                  <div className="row">
-                    {Object.keys(recipeData).length > 0 &&
-                      Object.entries(recipeData?.dietPlan).map(
-                        ([mealName, mealData]) => {
-                          return (
-                            <div
-                              className="col-lg-4 col-xs-12 mb-3"
-                              key={mealName}
-                            >
-                              <div className="diet-cards">
-                                <div className="meal-header">
-                                  <h3 className="meal-title">
-                                    {mealName.replace("_", " ")}
-                                  </h3>
-                                  <span className="total-calories">
-                                    <img src={kcal} alt="kcal" />
-                                    {mealData.nutrition?.calories}
+              </div>
+              <div className="container mt-4">
+                <div className="row">
+                  {Object.keys(recipeData).length > 0 &&
+                    Object.entries(recipeData?.dietPlan).map(
+                      ([mealName, mealData]) => {
+                        return (
+                          <div
+                            className="col-lg-4 col-xs-12 mb-3"
+                            key={mealName}
+                          >
+                            <div className="diet-cards">
+                              <div className="meal-header">
+                                <h3 className="meal-title">
+                                  {mealName.replace("_", " ")}
+                                </h3>
+                                <span className="total-calories">
+                                  <img src={kcal} alt="kcal" />
+                                  {mealData.nutrition?.calories}
+                                </span>
+                              </div>
+
+                              <h5 className="meal-name">{mealData.meal}</h5>
+
+                              <div className="Macronutrients-Breakup">
+                                <h6 className="nutrients-title">
+                                  Macronutrients Breakup
+                                </h6>
+                                <p className="meals">
+                                  <span className="nutrients">
+                                    <img src={proteins} alt="proteins" />
+                                    Proteins:
                                   </span>
-                                </div>
+                                  <span className="nutrients-value">
+                                    {mealData.nutrition?.proteins}
+                                  </span>
+                                </p>
+                                <p className="meals">
+                                  <span className="nutrients">
+                                    {" "}
+                                    <img src={fats} alt="fats" />
+                                    Fats:
+                                  </span>{" "}
+                                  <span className="nutrients-value">
+                                    {mealData.nutrition?.fats}
+                                  </span>
+                                </p>
+                                <p className="meals">
+                                  <span className="nutrients">
+                                    <img src={carbs} alt="carbs" />
+                                    Carbs:
+                                  </span>{" "}
+                                  <span className="nutrients-value">
+                                    {mealData.nutrition?.carbs}
+                                  </span>
+                                </p>
+                                <p className="meals"></p>
+                              </div>
 
-                                <h5 className="meal-name">{mealData.meal}</h5>
-
-                                <div className="Macronutrients-Breakup">
-                                  <h6 className="nutrients-title">
-                                    Macronutrients Breakup
-                                  </h6>
-                                  <p className="meals">
-                                    <span className="nutrients">
-                                      <img src={proteins} alt="proteins" />
-                                      Proteins:
-                                    </span>
-                                    <span className="nutrients-value">
-                                      {mealData.nutrition?.proteins}
-                                    </span>
-                                  </p>
-                                  <p className="meals">
-                                    <span className="nutrients">
-                                      {" "}
-                                      <img src={fats} alt="fats" />
-                                      Fats:
-                                    </span>{" "}
-                                    <span className="nutrients-value">
-                                      {mealData.nutrition?.fats}
-                                    </span>
-                                  </p>
-                                  <p className="meals">
-                                    <span className="nutrients">
-                                      <img src={carbs} alt="carbs" />
-                                      Carbs:
-                                    </span>{" "}
-                                    <span className="nutrients-value">
-                                      {mealData.nutrition?.carbs}
-                                    </span>
-                                  </p>
-                                  <p className="meals"></p>
-                                </div>
-
-                                <div className="d-flex justify-content-end">
-                                  <button
-                                    className="secondary-outline"
-                                    onClick={() => handelRecipeDetail(mealData)}
-                                  >
-                                    View Details
-                                  </button>
-                                </div>
+                              <div className="d-flex justify-content-end">
+                                <button
+                                  className="secondary-outline"
+                                  onClick={() => handelRecipeDetail(mealData)}
+                                >
+                                  View Details
+                                </button>
                               </div>
                             </div>
-                          );
-                        },
-                      )}
-                    <div className="col-lg-4 col-xs-12 mb-3">
-                      <div className="diet-cards diet-notes">
-                        <div className="meal-header">
-                          <h3 className="meal-title">Diet Notes</h3>
-                        </div>
-                        {dietNotes.map(({ id, img, title }) => {
-                          return (
-                            <p className="meals" key={id}>
-                              <span className="nutrients-value">
-                                <img src={img} alt="proteins" /> {title}
-                              </span>
-                            </p>
-                          );
-                        })}
+                          </div>
+                        );
+                      },
+                    )}
+                  <div className="col-lg-4 col-xs-12 mb-3">
+                    <div className="diet-cards diet-notes">
+                      <div className="meal-header">
+                        <h3 className="meal-title">Diet Notes</h3>
                       </div>
+                      {dietNotes.map(({ id, img, title }) => {
+                        return (
+                          <p className="meals" key={id}>
+                            <span className="nutrients-value">
+                              <img src={img} alt="proteins" /> {title}
+                            </span>
+                          </p>
+                        );
+                      })}
                     </div>
                   </div>
                 </div>
               </div>
+            </div>
 
-              <EmailModalPop
-                setIsModal={setIsModal}
-                isModal={isModal}
-                recipeData={recipeData}
-                userId={userId}
-              />
-              <RecipeDetailModalPop
-                isRecipeDetail={isRecipeDetail}
-                setIsRecipeDetail={setIsRecipeDetail}
-                mealRecipeData={mealRecipeData}
-                mealRecipePlanData={mealRecipePlanData}
-                isRecipeLoader={isRecipeLoader}
-                setMealRecipePlanData={setMealRecipePlanData}
-              />
-            </>
-          )}
-        </>
-      )}
+            <EmailModalPop
+              setIsModal={setIsModal}
+              isModal={isModal}
+              recipeData={recipeData}
+              userId={userId}
+            />
+            <RecipeDetailModalPop
+              isRecipeDetail={isRecipeDetail}
+              setIsRecipeDetail={setIsRecipeDetail}
+              mealRecipeData={mealRecipeData}
+              mealRecipePlanData={mealRecipePlanData}
+              isRecipeLoader={isRecipeLoader}
+              setMealRecipePlanData={setMealRecipePlanData}
+            />
+          </div>
+        )}
+      </>
     </React.Fragment>
   );
 };

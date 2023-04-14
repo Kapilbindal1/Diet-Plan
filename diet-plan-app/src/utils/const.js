@@ -16,6 +16,7 @@ export const detail = [
     question: "Please tell us your full name *",
     type: "name",
     option_type: null,
+    gif: juice,
     answer_type: "input",
   },
   {
@@ -77,6 +78,7 @@ export const detail = [
     type: "weight",
     description: ["in Kilograms (kg)"],
     option_type: null,
+    gif: coffeeCup,
     answer_type: "input",
   },
   {
@@ -96,6 +98,7 @@ export const detail = [
     ],
     type: "height",
     option_type: null,
+    gif: juice,
     answer_type: "input",
   },
   {
@@ -103,6 +106,7 @@ export const detail = [
     question: "Are you at risk of any medical condition? *",
     type: "medicalHistory",
     option_type: "list",
+    gif: coldrink,
     answer_type: null,
     answers: [
       { option: "PCOS/PCOD", isSelected: false },

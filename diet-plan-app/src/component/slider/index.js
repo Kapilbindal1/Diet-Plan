@@ -7,7 +7,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { detail } from "../../utils/const";
 import Fruits from "../../assets/gif/fruits.gif";
-import logo from "../../assets/images/logo-orange.svg";
+import logo from "../../assets/images/wb-logo.svg";
 import next from "../../assets/images/next.svg";
 import prev from "../../assets/images/prev.svg";
 import { addUserAnswerRequest } from "../../redux/reducer/user";
@@ -157,14 +157,16 @@ const SlickSlider = () => {
               quesAnswArr.map((item, questionIndex) => {
                 return (
                   <div
-                    className={`row align-items-center slides ${value === questionIndex ? "active-slide" : ""
-                      }`}
+                    className={`row align-items-center slides ${
+                      value === questionIndex ? "active-slide" : ""
+                    }`}
                   >
                     <div className="col-lg-6 col-sm-12 col-md-8 p-0">
                       {value === questionIndex && (
                         <div className="slider-content animate__animated animate__backInUp">
-                          <h5 className="steps">{`Step 0${questionIndex + 1
-                            }`}</h5>
+                          <h5 className="steps">{`Step 0${
+                            questionIndex + 1
+                          }`}</h5>
                           <h2>{item.question}</h2>
                           <>
                             {item?.description?.map((des) => {
@@ -232,8 +234,8 @@ const SlickSlider = () => {
                               value === quesAnswArr.length - 1
                                 ? handleSubmit
                                 : () => {
-                                  handleNextButton(item);
-                                }
+                                    handleNextButton(item);
+                                  }
                             }
                           >
                             {value === quesAnswArr.length - 1
