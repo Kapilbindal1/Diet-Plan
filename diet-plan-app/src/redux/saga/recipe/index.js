@@ -60,18 +60,18 @@ function* genrateMealPdfWithEmailRequest(action) {
       email,
       userId,
     );
-    console.log("===>response", response);
+
     const { status, statusText, data = [] } = response || {};
     if (status === 200) {
-      successAlert("Successfully mail send.");
+      successAlert("Diet plan has been sent to your mail.");
       action.payload.successCallback(data);
     } else {
-      errorAlert("Failed to mail send");
-      action.payload.failureCallback("error from recipe");
+      errorAlert("Failed to send diet plan");
+      action.payload.failureCallback("Failed to send diet plan");
     }
   } catch (e) {
-    errorAlert("Failed to mail send");
-    action.payload.failureCallback("error from recipe");
+    errorAlert("Failed to send diet plan");
+    action.payload.failureCallback("Failed to send diet plan");
   }
 }
 

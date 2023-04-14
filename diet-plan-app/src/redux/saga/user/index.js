@@ -19,16 +19,16 @@ function* addUserAnswer(action) {
     console.log("===>response", response);
     const { status, statusText, data = [], id = data._id } = response || {};
     if (status === 200) {
-      successAlert("Successfully added answers.");
+      // successAlert("Successfully added answers.");
       const recipe = yield call(services.getRecipeRequest, id);
       yield put(userAnswerAddedSuccess(recipe.data));
       yield put(addUserDataId(id));
     } else {
-      errorAlert("Failed to added answers");
+      errorAlert("Error");
       yield put(userAnswerAddedFailure("Failed to added answers"));
     }
   } catch (e) {
-    errorAlert("Failed to added answers");
+    errorAlert("Error");
     yield put(userAnswerAddedFailure("Failed to added answers"));
   }
 }
