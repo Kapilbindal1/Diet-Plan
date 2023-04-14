@@ -112,49 +112,45 @@ export const Recipe = () => {
   return (
     <React.Fragment>
       <>
+        <p className="disclaimer">
+          The diet plan suggestions provided by our app are generated using AI
+          based on your input data. We strive to provide the best possible
+          recommendations, but we cannot guarantee the accuracy, completeness,
+          or usefulness of any information provided.
+          {/* <img src={close} alt="close" onClick={() => setIsDisclaimer(false)} /> */}
+        </p>
+        <div className="container">
+          <div className="d-flex px-3 flex-wrap mt-4 justify-content-between align-items-center">
+            <img
+              className="logo"
+              src={logo}
+              alt="logo"
+              onClick={() => {
+                navigate("/detail");
+                window?.location.reload();
+              }}
+            />
+            <div
+              className={`d-flex flex-wrap mt-3 ${
+                isLoading || (!isLoading && isError) ? "d-none" : ""
+              }`}
+            >
+              <button
+                className="secondary-outline"
+                onClick={handlePdfWithEmail}
+              >
+                Get PDF
+              </button>
+            </div>
+          </div>
+        </div>
         {isLoading ? (
           <Loader />
         ) : isError.length > 0 ? (
           <ErrorMsg handleLogo={handleLogo} />
         ) : (
           <div>
-            {isDisclaimer && (
-              <p className="disclaimer">
-                The diet plan suggestions provided by our app are generated
-                using AI based on your input data. We strive to provide the best
-                possible recommendations, but we cannot guarantee the accuracy,
-                completeness, or usefulness of any information provided.
-                {/* <img src={close} alt="close" onClick={() => setIsDisclaimer(false)} /> */}
-              </p>
-            )}
             <div className="container">
-              <div className="d-flex px-3 flex-wrap mt-4 justify-content-between align-items-center">
-                <img
-                  className="logo"
-                  src={logo}
-                  alt="logo"
-                  onClick={() => {
-                    navigate("/detail");
-                    window?.location.reload();
-                  }}
-                />
-                <div className="d-flex flex-wrap mt-3">
-                  {/* <a
-      className="secondary-outline me-3"
-      href={pdfurl1}
-      download={"diet-meal"}
-    >
-      Download PDF
-    </a> */}
-
-                  <button
-                    className="secondary-outline"
-                    onClick={handlePdfWithEmail}
-                  >
-                    Get PDF
-                  </button>
-                </div>
-              </div>
               <div className="container mt-4">
                 <div className="row">
                   {Object.keys(recipeData).length > 0 &&

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Slider from "react-slick";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -17,7 +17,6 @@ const SlickSlider = () => {
   const [answers, setAnswers] = useState({});
   const [quesAnswArr, setQuesAnswArr] = useState(detail);
   const [error, setError] = useState("");
-
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -28,6 +27,16 @@ const SlickSlider = () => {
     setError("");
     setValue((prev) => prev - 1);
   };
+  // const HandleBackFunctionality = () => {
+  //   if (window.event) {
+  //     if (window.event.clientX < 40 && window.event.clientY < 0) {
+  //       window.location.href = "http://localhost:3000/detail";
+  //     }
+  //   }
+  // };
+  // useEffect(() => {
+  //   HandleBackFunctionality();
+  // }, [value]);
 
   const handleSlideNext = () => {
     if (value === quesAnswArr.length - 1) {
@@ -181,7 +190,7 @@ const SlickSlider = () => {
                   >
                     <div className="col-lg-6 col-sm-12 col-md-8 p-0">
                       {value === questionIndex && (
-                        <div className="slider-content animate__animated animate__backInUp">
+                        <div className="slider-content">
                           <h5 className="steps">{`Step 0${
                             questionIndex + 1
                           }`}</h5>
@@ -269,6 +278,12 @@ const SlickSlider = () => {
                           className="slider-img"
                           src={item.gif ? item.gif : Fruits}
                         />
+                        // <img
+                        //   className="slider-img"
+                        //   width="100%"
+                        //   height="300"
+                        //   src="https://images.pexels.com/photos/10752156/pexels-photo-10752156.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load"
+                        // />
                       }
                     </div>
                   </div>

@@ -39,7 +39,7 @@ export const detail = [
     type: "age",
     option_type: "list",
     answer_type: null,
-    gif: coffeeCup,
+    gif: juice,
     answers: [
       { option: "25 - 35 years", isSelected: false },
       { option: "36 - 45 years", isSelected: false },
@@ -78,7 +78,7 @@ export const detail = [
     type: "weight",
     description: ["in Kilograms (kg)"],
     option_type: null,
-    gif: coffeeCup,
+    gif: juice,
     answer_type: "input",
   },
   {
@@ -87,11 +87,8 @@ export const detail = [
     description: [
       "You can refer to this chart for your height in cm.",
       "150 is 4 feet 11 inches",
-      "155 is 5 feet 1 inch",
       "160 is 5 feet 3 inches",
-      "165 is 5 feet 5 inches",
       "170 is 5 feet 7 inches",
-      "175 is 5 feet 9 inches",
       "180 is 5 feet 11 inches",
       "185 is 6 feet 1 inch",
       "190 is 6 feet 3 inches",

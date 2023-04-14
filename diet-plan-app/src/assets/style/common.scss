@@ -6,10 +6,16 @@ select {
   font-size: 100%;
 }
 .loader {
-  height: 100vh;
+  height: 80vh;
   display: flex;
   justify-content: center;
   align-items: center;
+  @media (max-height: 640px) {
+    height: 70vh;
+  }
+  @media (max-width: 576px) {
+    height: 60vh;
+  }
   .spinner-border {
     border: 0.25em solid #e3664f;
     border-right-color: transparent;
@@ -89,7 +95,7 @@ select {
     max-width: 98%;
   }
   .loader {
-    height: 40vh;
+    height: 30vh;
   }
   .recipe-title {
     font-weight: 700;

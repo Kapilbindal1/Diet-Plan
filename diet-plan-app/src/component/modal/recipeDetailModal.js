@@ -51,7 +51,7 @@ const RecipeDetailModalPop = ({
   isRecipeLoader,
   setMealRecipePlanData,
 }) => {
-  useEffect(() => { }, [mealRecipePlanData]);
+  useEffect(() => {}, [mealRecipePlanData]);
   console.log("===>mealRecipeData", mealRecipePlanData);
 
   const handleModalClose = () => {
@@ -65,13 +65,13 @@ const RecipeDetailModalPop = ({
         className="common-modal modal-dialog-centered"
         isOpen={isRecipeDetail}
       >
+        <div className="close-icon">
+          <img src={close} alt="close" onClick={() => handleModalClose()} />
+        </div>
         {isRecipeLoader ? (
           <Loader isRecipeLoader={isRecipeLoader} />
         ) : (
           <div>
-            <div className="close-icon">
-              <img src={close} alt="close" onClick={() => handleModalClose()} />
-            </div>
             <ModalHeader className="nutrients-value">
               {mealRecipePlanData?.name}
               <div className="nutreints-calc">

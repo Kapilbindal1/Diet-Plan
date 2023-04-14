@@ -7,9 +7,15 @@ const Loader = (props) => {
         <div className="spinner-border" role="status">
           <span className="visually-hidden">Loading...</span>
         </div>
-        <p>{props.isRecipeLoader ?
-          "Fetching ingredients and recipe details, please wait..." :
-          "Generating your custom diet plan, please wait..."}</p>
+        {props.isMail ? (
+          <p>Sending mail to you...</p>
+        ) : (
+          <p>
+            {props.isRecipeLoader
+              ? "Fetching ingredients and recipe details, please wait..."
+              : "Generating your custom diet plan, please wait..."}
+          </p>
+        )}
       </div>
     </div>
   );
