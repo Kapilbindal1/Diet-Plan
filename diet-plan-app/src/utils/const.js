@@ -5,6 +5,11 @@ import footprint from "../assets/images/footprint.svg";
 import meditation from "../assets/images/meditation.svg";
 import sleeping from "../assets/images/sleeping.svg";
 
+import fruits from "../assets/gif/fruits.gif";
+import coffeeCup from "../assets/gif/coffeeCup.gif";
+import juice from "../assets/gif/juice.gif";
+import coldrink from "../assets/gif/coldrink.gif";
+
 export const detail = [
   {
     id: 1,
@@ -12,6 +17,7 @@ export const detail = [
     type: "fitnessGoals",
     option_type: "list",
     answer_type: null,
+    gif: fruits,
     answers: [
       { option: "I want to lose weight", isSelected: false },
       { option: "I want to manage my medical conditions", isSelected: false },
@@ -25,6 +31,7 @@ export const detail = [
     type: "age",
     option_type: "list",
     answer_type: null,
+    gif: coffeeCup,
     answers: [
       { option: "25 - 35 years", isSelected: false },
       { option: "36 - 45 years", isSelected: false },
@@ -38,6 +45,7 @@ export const detail = [
     type: "gender",
     option_type: "list",
     answer_type: null,
+    gif: juice,
     answers: [
       { option: "Male", isSelected: false },
       { option: "Female", isSelected: false },
@@ -49,6 +57,7 @@ export const detail = [
     type: "dietaryPreference",
     option_type: "list",
     answer_type: null,
+    gif: coldrink,
     answers: [
       { option: "Vegetarian", isSelected: false },
       { option: "Non-Vegetarian", isSelected: false },

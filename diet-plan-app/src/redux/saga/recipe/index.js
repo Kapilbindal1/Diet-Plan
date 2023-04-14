@@ -18,14 +18,14 @@ function* getRecipeDataRequest(action) {
     console.log("===>response", response);
     const { status, statusText, data = [] } = response || {};
     if (status === 200) {
-      successAlert("Successfully added answers.");
+      // successAlert("Successfully added answers.");
       action.payload.successCallback(data);
     } else {
-      errorAlert("Failed to added answers");
+      // errorAlert("Failed to added answers");
       action.payload.failureCallback("error from recipe");
     }
   } catch (e) {
-    errorAlert("Failed to added answers");
+    // errorAlert("Failed to added answers");
     action.payload.failureCallback("error from recipe");
   }
 }
@@ -39,10 +39,10 @@ function* genrateMealPdfRequest(action) {
     console.log("===>response", response);
     const { status, statusText, data = [] } = response || {};
     if (status === 200) {
-      successAlert("Successfully added answers.");
+      successAlert("Successfully");
       action.payload.successCallback(data);
     } else {
-      errorAlert("Failed to added answers");
+      errorAlert("Failed");
       action.payload.failureCallback("Pdf error");
     }
   } catch (e) {
@@ -63,14 +63,14 @@ function* genrateMealPdfWithEmailRequest(action) {
     console.log("===>response", response);
     const { status, statusText, data = [] } = response || {};
     if (status === 200) {
-      successAlert("Successfully added answers.");
+      successAlert("Successfully mail send.");
       action.payload.successCallback(data);
     } else {
-      errorAlert("Failed to added answers");
+      errorAlert("Failed to mail send");
       action.payload.failureCallback("error from recipe");
     }
   } catch (e) {
-    errorAlert("Failed to added answers");
+    errorAlert("Failed to mail send");
     action.payload.failureCallback("error from recipe");
   }
 }
@@ -83,14 +83,14 @@ function* genrateMealRecipeRequest(action) {
     console.log("===>responsegenrateMealRecipePlan", response);
     const { status, statusText, data = [] } = response || {};
     if (status === 200) {
-      successAlert("Successfully added answers.");
+      // successAlert("Successfully added answers.");
       action.payload.successCallback(data);
     } else {
-      errorAlert("Failed to added answers");
+      // errorAlert("Failed to added answers");
       action.payload.failureCallback("error from recipe");
     }
   } catch (e) {
-    errorAlert("Failed to added answers");
+    // errorAlert("Failed to added answers");
     action.payload.failureCallback("error from recipe");
   }
 }

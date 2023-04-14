@@ -25,6 +25,7 @@ const SlickSlider = () => {
     if (value === 0) {
       return;
     }
+    setError("");
     setValue((prev) => prev - 1);
   };
 
@@ -236,7 +237,12 @@ const SlickSlider = () => {
                       )}
                     </div>
                     <div className="col-lg-6 col-sm-12  col-md-4 p-0">
-                      {<img className="slider-img" src={Fruits} />}
+                      {
+                        <img
+                          className="slider-img"
+                          src={item.gif ? item.gif : Fruits}
+                        />
+                      }
                     </div>
                   </div>
                 );
