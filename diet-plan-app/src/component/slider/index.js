@@ -95,6 +95,13 @@ const SlickSlider = () => {
         item.type !== "height"
       ) {
         check = true;
+      } else if (
+        answers.name !== undefined &&
+        answers.name !== "" &&
+        item.type !== "height" &&
+        item.type !== "weight"
+      ) {
+        check = true;
       }
     } else {
       check = false;
@@ -107,8 +114,10 @@ const SlickSlider = () => {
       if (item.answer_type === "input") {
         if (item.type === "weight") {
           setError(`Please enter your weight`);
-        } else {
+        } else if (item.type === "height") {
           setError(`Please enter your height`);
+        } else {
+          setError(`Please enter your name`);
         }
       } else {
         if (item.type === "fitnessGoals")
@@ -129,7 +138,7 @@ const SlickSlider = () => {
       setError(`Please select your medical history`);
     }
   };
-
+  console.log("====>", answers);
   return (
     <div className="container-fluid mt-0 mt-md-4">
       <div className="logo-header">
@@ -170,7 +179,7 @@ const SlickSlider = () => {
                           <div>
                             {item?.answer_type === "input" && (
                               <input
-                                type="number"
+                                type={item.type === "name" ? "text" : "number"}
                                 className="answer-input"
                                 placeholder="Type your answer here..."
                                 value={

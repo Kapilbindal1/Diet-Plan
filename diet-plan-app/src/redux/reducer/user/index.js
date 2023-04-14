@@ -4,6 +4,7 @@ const initialState = {
   userData: {},
   isLoading: false,
   userId: "",
+  isError: "",
 };
 
 export const userSlice = createSlice({
@@ -13,6 +14,7 @@ export const userSlice = createSlice({
     addUserAnswerRequest: {
       reducer: (state) => {
         state.isLoading = true;
+        state.isError = "";
       },
       prepare: (requestBody) => {
         return {
@@ -23,6 +25,7 @@ export const userSlice = createSlice({
     userAnswerAddedSuccess: (state, action) => {
       state.userData = action.payload;
       state.isLoading = false;
+      state.isError = "";
     },
     addUserDataId: (state, action) => {
       state.userId = action.payload;
@@ -31,6 +34,12 @@ export const userSlice = createSlice({
     userAnswerAddedFailure: (state, action) => {
       state.userData = {};
       state.isLoading = false;
+      state.isError = action.payload;
+    },
+    userLogout: (state, action) => {
+      state.userData = {};
+      state.isLoading = false;
+      state.isError = "";
     },
   },
 });
@@ -41,6 +50,7 @@ export const {
   userAnswerAddedSuccess,
   userAnswerAddedFailure,
   addUserDataId,
+  userLogout,
 } = userSlice.actions;
 
 export default userSlice.reducer;

@@ -25,11 +25,11 @@ function* addUserAnswer(action) {
       yield put(addUserDataId(id));
     } else {
       errorAlert("Failed to added answers");
-      yield put(userAnswerAddedFailure());
+      yield put(userAnswerAddedFailure("Failed to added answers"));
     }
   } catch (e) {
     errorAlert("Failed to added answers");
-    yield put(userAnswerAddedFailure());
+    yield put(userAnswerAddedFailure("Failed to added answers"));
   }
 }
 

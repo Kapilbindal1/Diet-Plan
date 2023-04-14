@@ -13,6 +13,13 @@ import coldrink from "../assets/gif/coldrink.gif";
 export const detail = [
   {
     id: 1,
+    question: "Please tell us your full name *",
+    type: "name",
+    option_type: null,
+    answer_type: "input",
+  },
+  {
+    id: 2,
     question: "What’s your health goal? *",
     type: "fitnessGoals",
     option_type: "list",
@@ -26,7 +33,7 @@ export const detail = [
     ],
   },
   {
-    id: 2,
+    id: 3,
     question: "How old are you? *",
     type: "age",
     option_type: "list",
@@ -40,7 +47,7 @@ export const detail = [
     ],
   },
   {
-    id: 3,
+    id: 4,
     question: "Select your gender *",
     type: "gender",
     option_type: "list",
@@ -52,7 +59,7 @@ export const detail = [
     ],
   },
   {
-    id: 4,
+    id: 5,
     question: "Select your dietary preference *",
     type: "dietaryPreference",
     option_type: "list",
@@ -65,7 +72,7 @@ export const detail = [
     ],
   },
   {
-    id: 5,
+    id: 6,
     question: "Please enter your current weight below *",
     type: "weight",
     description: ["in Kilograms (kg)"],
@@ -73,7 +80,7 @@ export const detail = [
     answer_type: "input",
   },
   {
-    id: 6,
+    id: 7,
     question: "How tall are you? Please reply in centimetres(cm) *",
     description: [
       "You can refer to this chart for your height in cm.",
@@ -92,7 +99,7 @@ export const detail = [
     answer_type: "input",
   },
   {
-    id: 7,
+    id: 8,
     question: "Are you at risk of any medical condition? *",
     type: "medicalHistory",
     option_type: "list",
