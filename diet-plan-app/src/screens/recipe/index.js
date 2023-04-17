@@ -131,9 +131,8 @@ export const Recipe = () => {
               }}
             />
             <div
-              className={`d-flex flex-wrap mt-3 ${
-                isLoading || (!isLoading && isError) ? "d-none" : ""
-              }`}
+              className={`d-flex flex-wrap mt-3 ${isLoading || (!isLoading && isError) ? "d-none" : ""
+                }`}
             >
               <button
                 className="secondary-outline"
@@ -166,9 +165,10 @@ export const Recipe = () => {
                                 <h3 className="meal-title">
                                   {mealName.replace("_", " ")}
                                 </h3>
-                                <span className="total-calories">
+                                <span className="total-calories tooltip-hover">
                                   <img src={kcal} alt="kcal" />
                                   {mealData.nutrition?.calories}
+                                  <span class="tooltiptext">Calories</span>
                                 </span>
                               </div>
 

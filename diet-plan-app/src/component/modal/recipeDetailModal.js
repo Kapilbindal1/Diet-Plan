@@ -51,7 +51,7 @@ const RecipeDetailModalPop = ({
   isRecipeLoader,
   setMealRecipePlanData,
 }) => {
-  useEffect(() => {}, [mealRecipePlanData]);
+  useEffect(() => { }, [mealRecipePlanData]);
   console.log("===>mealRecipeData", mealRecipePlanData);
 
   const handleModalClose = () => {
@@ -75,22 +75,26 @@ const RecipeDetailModalPop = ({
             <ModalHeader className="nutrients-value">
               {mealRecipePlanData?.name}
               <div className="nutreints-calc">
-                <div className="nutreints-calc-val">
+                <div className="nutreints-calc-val tooltip-hover">
                   <img src={proteins} alt="proteins" />
                   <span>{mealRecipeData.nutrition?.proteins}</span>
+                  <span class="tooltiptext">Proteins</span>
                 </div>
-                <div className="nutreints-calc-val">
+                <div className="nutreints-calc-val tooltip-hover">
                   <img src={fats} alt="fats" />
                   <span>{mealRecipeData.nutrition?.fats}</span>
+                  <span class="tooltiptext">Fats</span>
                 </div>
-                <div className="nutreints-calc-val">
+                <div className="nutreints-calc-val tooltip-hover">
                   {" "}
                   <img src={carbs} alt="carbs" />
                   <span>{mealRecipeData.nutrition?.carbs}</span>
+                  <span class="tooltiptext">Carbs</span>
                 </div>
-                <div className="nutreints-calc-val">
+                <div className="nutreints-calc-val tooltip-hover">
                   <img src={kcal} alt="kcal" />
                   <span>{mealRecipeData.nutrition?.calories}</span>
+                  <span class="tooltiptext">Calories</span>
                 </div>
               </div>
             </ModalHeader>

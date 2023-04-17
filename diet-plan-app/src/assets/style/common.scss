@@ -57,6 +57,9 @@ select {
   align-items: center;
   justify-content: center;
   text-decoration: none;
+  &:focus-visible{
+    outline: none;
+  }
   @media all and (max-width: $tablet) {
     max-width: 15vh;
     font-size: 13px;
@@ -269,4 +272,52 @@ select {
   @media all and (max-width: $tablet) {
     width: 120px;
   }
+}
+.tooltip-hover {
+  position: relative;
+  display: inline-block;
+  border-bottom: 1px dotted black;
+  cursor: pointer;
+}
+
+.tooltip-hover .tooltiptext {
+  visibility: hidden;
+  width: 120px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+
+  /* Position the tooltip */
+  position: absolute;
+  z-index: 1;
+  font-size: 13px;
+  top: -42px;
+  right: -36px;
+// &:after{
+//     width: 0;
+//     height: 0;
+//     border-top: 4px solid transparent;
+//     border-left: 7px solid black;
+//     border-bottom: 4px solid transparent;
+//     content: '';
+//     position: absolute;
+//     right: -6%;
+//     top: 39%;
+// }
+&:after{
+width: 0;
+height: 0;
+border-left: 4px solid transparent;
+border-right: 4px solid transparent;
+border-top: 4px solid black;
+content: '';
+position: absolute;
+right: 55px;
+bottom: -4px;
+}
+}
+.tooltip-hover:hover .tooltiptext {
+  visibility: visible;
 }
