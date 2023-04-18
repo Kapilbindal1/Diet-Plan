@@ -69,6 +69,9 @@ body {
     .primary-solid {
       margin-top: 30px;
     }
+    .primary-solid:focus-visible {
+      outline: none;
+    }
     .description {
       font-weight: 500;
       font-size: 18px;

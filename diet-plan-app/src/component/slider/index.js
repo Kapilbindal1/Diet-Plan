@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Slider from "react-slick";
 import { useSelector, useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation, useNavigationType } from "react-router-dom";
 import "../../assets/style/slider.scss";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -14,29 +14,37 @@ import { addUserAnswerRequest } from "../../redux/reducer/user";
 
 const SlickSlider = () => {
   const [value, setValue] = useState(0);
+  const valueRef = useRef(null);
   const [answers, setAnswers] = useState({});
   const [quesAnswArr, setQuesAnswArr] = useState(detail);
   const [error, setError] = useState("");
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const location = useLocation();
+  const myRef = useRef(null);
+
+  // console.log("===>location", location);
+
+  // useEffect(() => {
+  //   return () => {
+  //     // && history.location.pathname === "any specific path")
+  //     if (navigationType === "POP" && location.pathname === "/detail") {
+  //       console.log("====>10");
+  //       // history.replace(history.location.pathname /* the new state */);
+  //     }
+  //   };
+  // }, [navigationType]);
 
   const handleSlidePrev = () => {
     if (value === 0) {
       return;
     }
     setError("");
-    setValue((prev) => prev - 1);
+    setValue((prev) => {
+      valueRef.current = prev - 1;
+      return prev - 1;
+    });
   };
-  // const HandleBackFunctionality = () => {
-  //   if (window.event) {
-  //     if (window.event.clientX < 40 && window.event.clientY < 0) {
-  //       window.location.href = "http://localhost:3000/detail";
-  //     }
-  //   }
-  // };
-  // useEffect(() => {
-  //   HandleBackFunctionality();
-  // }, [value]);
 
   const handleSlideNext = () => {
     if (value === quesAnswArr.length - 1) {
@@ -52,6 +60,9 @@ const SlickSlider = () => {
     questionIndex,
     answerIndex,
   ) => {
+    if (value === quesAnswArr.length - 1) {
+      myRef.current.focus();
+    }
     setAnswers({ ...answers, [type]: option.toLowerCase() });
     setError("");
     if (ansType === "input") {
@@ -65,7 +76,10 @@ const SlickSlider = () => {
     newQuestionsState[questionIndex].answers = newAnswers;
     if (value !== quesAnswArr.length - 1) {
       setError("");
-      setValue((prev) => prev + 1);
+      setValue((prev) => {
+        valueRef.current = prev + 1;
+        return prev + 1;
+      });
     }
     setQuesAnswArr(newQuestionsState);
   };
@@ -79,8 +93,6 @@ const SlickSlider = () => {
   };
 
   const handleNextButton = (item) => {
-    console.log(item, "itemitem==>>222", answers);
-
     let check = false;
     const regex = /^[0-9]*$/;
     if (item.option_type === "list" && item.answer_type === null) {
@@ -122,7 +134,10 @@ const SlickSlider = () => {
 
     if (check) {
       setError("");
-      setValue((prev) => prev + 1);
+      setValue((prev) => {
+        valueRef.current = prev + 1;
+        return prev + 1;
+      });
     } else {
       if (item.answer_type === "input") {
         if (item.type === "weight") {
@@ -157,6 +172,7 @@ const SlickSlider = () => {
       }
     }
   };
+
   const handleSubmit = () => {
     if (answers.medicalHistory !== undefined) {
       dispatch(addUserAnswerRequest(answers));
@@ -165,7 +181,41 @@ const SlickSlider = () => {
       setError(`Please select your medical history`);
     }
   };
-  console.log("====>", answers);
+
+  // useEffect(() => {
+  //   document.addEventListener("keypress", onHandleAnswers);
+  //   return () => document.removeEventListener("keypress", onHandleAnswers);
+  // }, []);
+
+  useEffect(() => {
+    if (myRef?.current) {
+      if (value !== 0 || value !== 5 || value !== 6) {
+        setTimeout(() => {
+          myRef.current.focus();
+        });
+      } else {
+        myRef.current.blur();
+      }
+    }
+  }, [value]);
+
+  const handleClick2 = (e, isInput, questionIndex) => {
+    if (e.key === "Enter") {
+      if (questionIndex === 0 || questionIndex === 5 || questionIndex === 6)
+        handleNextButton(quesAnswArr[value]);
+    }
+  };
+
+  const handleClick1 = (e, type) => {
+    if (e.key === "Enter") {
+      if (valueRef.current === 7) {
+        handleSubmit();
+      } else {
+        handleNextButton(quesAnswArr[value]);
+      }
+    }
+  };
+
   return (
     <div className="container-fluid mt-0 mt-md-4">
       <div className="logo-header">
@@ -208,12 +258,16 @@ const SlickSlider = () => {
                           <div>
                             {item?.answer_type === "input" && (
                               <input
+                                autoFocus
                                 type={item.type === "name" ? "text" : "number"}
+                                onKeyDown={(e) => handleClick2(e, true, value)}
                                 className="answer-input"
                                 placeholder="Type your answer here..."
                                 value={
                                   item.type === "weight"
                                     ? answers.weight
+                                    : item.type === "name"
+                                    ? answers.name
                                     : answers.height
                                 }
                                 onChange={(e) => {
@@ -256,11 +310,18 @@ const SlickSlider = () => {
                             {error}
                           </div>
                           <button
+                            ref={myRef}
                             className="primary-solid"
+                            tabIndex={0}
+                            onKeyDown={(e) => {
+                              handleClick1(e, "isButton");
+                            }}
                             onClick={
                               value === quesAnswArr.length - 1
-                                ? handleSubmit
-                                : () => {
+                                ? () => {
+                                    handleSubmit();
+                                  }
+                                : (e) => {
                                     handleNextButton(item);
                                   }
                             }
