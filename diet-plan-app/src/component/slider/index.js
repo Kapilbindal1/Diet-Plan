@@ -1,10 +1,8 @@
 import React, { useState, useEffect, useRef } from "react";
-import Slider from "react-slick";
-import { useSelector, useDispatch } from "react-redux";
+
+import { useDispatch } from "react-redux";
 import { useNavigate, useLocation, useNavigationType } from "react-router-dom";
 import "../../assets/style/slider.scss";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
 import { detail } from "../../utils/const";
 import Fruits from "../../assets/gif/fruits.gif";
 import logo from "../../assets/images/wb-logo.svg";
@@ -18,21 +16,19 @@ const SlickSlider = () => {
   const [answers, setAnswers] = useState({});
   const [quesAnswArr, setQuesAnswArr] = useState(detail);
   const [error, setError] = useState("");
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const location = useLocation();
   const myRef = useRef(null);
-
-  // console.log("===>location", location);
+  const navigationType = useNavigationType();
+  const [isSubmitActive, setIsSubmitActive] = useState(false);
 
   // useEffect(() => {
-  //   return () => {
-  //     // && history.location.pathname === "any specific path")
-  //     if (navigationType === "POP" && location.pathname === "/detail") {
-  //       console.log("====>10");
-  //       // history.replace(history.location.pathname /* the new state */);
-  //     }
-  //   };
+  //   // && history.location.pathname === "any specific path")
+  //   if (navigationType === "POP" && location.pathname === "/detail") {
+  //     // history.replace(history.location.pathname /* the new state */);
+  //   }
   // }, [navigationType]);
 
   const handleSlidePrev = () => {
@@ -74,6 +70,7 @@ const SlickSlider = () => {
       answer.isSelected = index === answerIndex;
     });
     newQuestionsState[questionIndex].answers = newAnswers;
+
     if (value !== quesAnswArr.length - 1) {
       setError("");
       setValue((prev) => {
@@ -172,9 +169,15 @@ const SlickSlider = () => {
       }
     }
   };
+  useEffect(() => {
+    if (value === quesAnswArr.length - 1) {
+      handleSubmit();
+    }
+  }, [Object.keys(answers)?.length]);
 
   const handleSubmit = () => {
-    if (answers.medicalHistory !== undefined) {
+    if (answers.medicalHistory !== undefined && !isSubmitActive) {
+      setIsSubmitActive(true);
       dispatch(addUserAnswerRequest(answers));
       navigate("/recipe");
     } else {
@@ -182,10 +185,84 @@ const SlickSlider = () => {
     }
   };
 
-  // useEffect(() => {
-  //   document.addEventListener("keypress", onHandleAnswers);
-  //   return () => document.removeEventListener("keypress", onHandleAnswers);
-  // }, []);
+  useEffect(() => {
+    document.addEventListener("keypress", handleKeyPress);
+    return () => document.removeEventListener("keypress", handleKeyPress);
+  }, [value]);
+
+  // const handleKeyPress = (e) => {
+  //   let obj = quesAnswArr[valueRef.current];
+  //   let str = "";
+  //   if (obj?.option_type === "list" && obj?.answer_type === null) {
+  //     if (e.key === "a") {
+  //       str = obj.answers[0].option;
+  //       onHandleAnswers(obj.type, str, null, valueRef.current, 0);
+  //       str = "";
+  //     } else if (e.key === "b") {
+  //       str = obj.answers[1].option;
+  //       onHandleAnswers(obj.type, str, null, valueRef.current, 1);
+  //       str = "";
+  //     } else if (e.key === "c") {
+  //       str = obj.answers[2].option;
+  //       onHandleAnswers(obj.type, str, null, valueRef.current, 2);
+  //       str = "";
+  //     } else if (e.key === "d") {
+  //       str = obj.answers[3].option;
+  //       onHandleAnswers(obj.type, str, null, valueRef.current, 3);
+  //       str = "";
+  //     } else if (e.key === "e") {
+  //       str = obj.answers[4].option;
+  //       onHandleAnswers(obj.type, str, null, valueRef.current, 4);
+  //       str = "";
+  //     } else if (e.key === "f") {
+  //       str = obj.answers[5].option;
+  //       onHandleAnswers(obj.type, str, null, valueRef.current, 5);
+  //       str = "";
+  //     } else if (e.key === "g") {
+  //       str = obj.answers[6].option;
+  //       onHandleAnswers(obj.type, str, null, valueRef.current, 6);
+  //       str = "";
+  //     }
+  //   }
+  // };
+  const handleKeyPress = (e) => {
+    let obj = quesAnswArr[valueRef.current];
+    if (obj?.option_type === "list" && obj?.answer_type === null) {
+      let index = -1;
+      switch (e.key) {
+        case "a":
+          index = 0;
+          break;
+        case "b":
+          index = 1;
+          break;
+        case "c":
+          index = 2;
+          break;
+        case "d":
+          index = 3;
+          break;
+        case "e":
+          index = 4;
+          break;
+        case "f":
+          index = 5;
+          break;
+        case "g":
+          index = 6;
+          break;
+        default:
+          if (e.code !== "Enter") {
+            setError("Invalid key pressed");
+          }
+          return;
+      }
+      if (index !== -1 && index < obj.answers.length) {
+        const answer = obj.answers[index];
+        onHandleAnswers(obj.type, answer.option, null, valueRef.current, index);
+      }
+    }
+  };
 
   useEffect(() => {
     if (myRef?.current) {
@@ -215,7 +292,6 @@ const SlickSlider = () => {
       }
     }
   };
-
   return (
     <div className="container-fluid mt-0 mt-md-4">
       <div className="logo-header">
@@ -264,18 +340,20 @@ const SlickSlider = () => {
                                 className="answer-input"
                                 placeholder="Type your answer here..."
                                 value={
-                                  item.type === "weight"
+                                  item?.type === "name"
+                                    ? answers?.name
+                                    : item?.type === "weight"
                                     ? answers.weight
-                                    : item.type === "name"
-                                    ? answers.name
-                                    : answers.height
+                                    : answers?.height
                                 }
                                 onChange={(e) => {
-                                  let value = e.target.value;
+                                  let value1 = e.target.value;
                                   onHandleAnswers(
                                     item.type,
-                                    value,
+                                    value1,
                                     item?.answer_type,
+                                    null,
+                                    null,
                                   );
                                 }}
                               />
