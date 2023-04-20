@@ -1,6 +1,5 @@
 @import "variable.scss";
 @import "bootstrap/dist/css/bootstrap.min.css";
-@import "animate.css";
 @import "./diet.scss";
 @import "./common.scss";
 html {
@@ -169,9 +168,9 @@ body {
   }
 }
 .navigation {
-  position: absolute;
-  right: 10%;
-  bottom: 0;
+  position: fixed;
+    right: 10%;
+    bottom: 4%;
   background: #ffffff;
   box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.1);
   border-radius: 3px;

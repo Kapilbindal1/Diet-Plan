@@ -322,7 +322,7 @@ const SlickSlider = () => {
                   >
                     <div className="col-lg-6 col-sm-12 col-md-8 p-0">
                       {value === questionIndex && (
-                        <div className="slider-content">
+                        <div className="slider-content animate__backInUp animate__animated">
                           <h5 className="steps">{`Step 0${questionIndex + 1
                             }`}</h5>
                           <h2>{item.question}</h2>
