@@ -51,7 +51,7 @@ body {
       margin-bottom: 10px;
       @media all and (max-width: $tablet) {
         margin: 0;
-        font-size: 16px;
+        font-size: 15px;
       }
     }
     h2 {
@@ -61,6 +61,10 @@ body {
       font-size: 23px;
       line-height: 37px;
       color: #000000;
+      @media (max-width:$xxLDesktop) {
+        font-size: 18px;
+        line-height: unset;
+      }
       @media all and (max-width: $tablet) {
         font-size: 1rem;
         line-height: 25px;
@@ -77,6 +81,10 @@ body {
       font-size: 18px;
       line-height: 27px;
       color: #171717;
+      @media (max-width:$xxLDesktop) {
+        line-height: unset;
+        font-size: 14px;
+      }
       @media (max-width: $tablet) {
         font-size: 13px;
         line-height: 20px;
@@ -181,14 +189,20 @@ body {
 }
 .slides {
   display: none;
+  width: 100%;
   .slider-img {
-    width: 100%;
-    // max-width: 100%;
-    // height: 300px;
-    height: 428px;
+    max-width: 100%;
+    width: 80%;
+    margin-left: 50px;
+    &.hot-coffee-img{
+      width: 55%;
+    }
     @media (max-width: $tablet) {
       display: none;
     }
+  }
+  @media (max-width:$tablet) {
+    margin: 0;
   }
 }
 .active-slide {
