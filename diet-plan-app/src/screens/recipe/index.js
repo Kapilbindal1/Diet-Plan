@@ -105,7 +105,7 @@ export const Recipe = () => {
   };
 
   const handleLogo = () => {
-    navigate("/detail");
+    navigate("/");
     window?.location.reload();
   };
 
@@ -126,13 +126,14 @@ export const Recipe = () => {
               src={logo}
               alt="logo"
               onClick={() => {
-                navigate("/detail");
+                navigate("/");
                 window?.location.reload();
               }}
             />
             <div
-              className={`d-flex flex-wrap mt-3 ${isLoading || (!isLoading && isError) ? "d-none" : ""
-                }`}
+              className={`d-flex flex-wrap mt-3 ${
+                isLoading || (!isLoading && isError) ? "d-none" : ""
+              }`}
             >
               <button
                 className="secondary-outline"

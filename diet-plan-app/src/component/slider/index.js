@@ -8,7 +8,7 @@ import Fruits from "../../assets/gif/fruits.gif";
 import logo from "../../assets/images/wb-logo.svg";
 import next from "../../assets/images/next.svg";
 import prev from "../../assets/images/prev.svg";
-import { addUserAnswerRequest } from "../../redux/reducer/user";
+import { addUserAnswerRequest, userLogout } from "../../redux/reducer/user";
 
 const SlickSlider = () => {
   const [value, setValue] = useState(0);
@@ -24,12 +24,17 @@ const SlickSlider = () => {
   const navigationType = useNavigationType();
   const [isSubmitActive, setIsSubmitActive] = useState(false);
 
+  console.log("====>navigationType", navigationType);
+
   // useEffect(() => {
   //   // && history.location.pathname === "any specific path")
   //   if (navigationType === "POP" && location.pathname === "/detail") {
   //     // history.replace(history.location.pathname /* the new state */);
   //   }
   // }, [navigationType]);
+  useEffect(() => {
+    dispatch(userLogout());
+  }, []);
 
   const handleSlidePrev = () => {
     if (value === 0) {

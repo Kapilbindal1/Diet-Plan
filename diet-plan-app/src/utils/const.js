@@ -9,6 +9,9 @@ import fruits from "../assets/gif/fruits.gif";
 import coffeeCup from "../assets/gif/coffeeCup.gif";
 import juice from "../assets/gif/juice.gif";
 import coldrink from "../assets/gif/coldrink.gif";
+import hotCoffee from "../assets/gif/hotCoffee.gif";
+import cup from "../assets/gif/cup.gif";
+import cokies from "../assets/gif/cokies.gif";
 
 export const detail = [
   {
@@ -39,7 +42,7 @@ export const detail = [
     type: "age",
     option_type: "list",
     answer_type: null,
-    gif: juice,
+    gif: hotCoffee,
     answers: [
       { option: "25 - 35 years", isSelected: false },
       { option: "36 - 45 years", isSelected: false },
@@ -53,7 +56,7 @@ export const detail = [
     type: "gender",
     option_type: "list",
     answer_type: null,
-    gif: juice,
+    gif: cup,
     answers: [
       { option: "Male", isSelected: false },
       { option: "Female", isSelected: false },
@@ -78,7 +81,7 @@ export const detail = [
     type: "weight",
     description: ["in Kilograms (kg)"],
     option_type: null,
-    gif: juice,
+    gif: cokies,
     answer_type: "input",
   },
   {
