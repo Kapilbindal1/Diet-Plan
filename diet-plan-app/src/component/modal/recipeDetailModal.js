@@ -118,10 +118,7 @@ const RecipeDetailModalPop = ({
                       mealRecipePlanData.instructions.map((item, index) => {
                         return (
                           <>
-                            <p className="steps-list">
-                              <span className="steps">{index + 1}</span>
-                              {item}
-                            </p>
+                            <p className="steps-list">{item}</p>
                           </>
                         );
                       })}{" "}

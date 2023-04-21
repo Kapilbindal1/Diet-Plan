@@ -57,7 +57,7 @@ select {
   align-items: center;
   justify-content: center;
   text-decoration: none;
-  &:focus-visible{
+  &:focus-visible {
     outline: none;
   }
   @media all and (max-width: $tablet) {
@@ -195,15 +195,6 @@ select {
     }
     .steps-list {
       position: relative;
-      padding-left: 25px;
-    }
-    .steps {
-      font-weight: 600;
-      font-size: 16px;
-      color: #565656;
-      margin-right: 10px;
-      position: absolute;
-      left: 0;
     }
   }
   .cooking-modal-body {
@@ -294,28 +285,28 @@ select {
   font-size: 13px;
   top: -42px;
   right: -36px;
-// &:after{
-//     width: 0;
-//     height: 0;
-//     border-top: 4px solid transparent;
-//     border-left: 7px solid black;
-//     border-bottom: 4px solid transparent;
-//     content: '';
-//     position: absolute;
-//     right: -6%;
-//     top: 39%;
-// }
-&:after{
-width: 0;
-height: 0;
-border-left: 4px solid transparent;
-border-right: 4px solid transparent;
-border-top: 4px solid black;
-content: '';
-position: absolute;
-right: 55px;
-bottom: -4px;
-}
+  // &:after{
+  //     width: 0;
+  //     height: 0;
+  //     border-top: 4px solid transparent;
+  //     border-left: 7px solid black;
+  //     border-bottom: 4px solid transparent;
+  //     content: '';
+  //     position: absolute;
+  //     right: -6%;
+  //     top: 39%;
+  // }
+  &:after {
+    width: 0;
+    height: 0;
+    border-left: 4px solid transparent;
+    border-right: 4px solid transparent;
+    border-top: 4px solid black;
+    content: "";
+    position: absolute;
+    right: 55px;
+    bottom: -4px;
+  }
 }
 .tooltip-hover:hover .tooltiptext {
   visibility: visible;
@@ -369,5 +360,17 @@ bottom: -4px;
     -webkit-transform: scale(1);
     transform: scale(1);
     opacity: 1;
+  }
+}
+.modal {
+  bottom: 0;
+  left: 0;
+  position: fixed;
+  right: 0;
+  top: 0;
+}
+body {
+  &.ios {
+    position: fixed;
   }
 }
