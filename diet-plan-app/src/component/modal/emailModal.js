@@ -55,7 +55,6 @@ const EmailModalPop = ({ isModal, setIsModal, recipeData, userId }) => {
 
   const handleGetPlan = () => {
     testEmail(email);
-    console.log("email", email, email.length);
     if (error.length > 0 || email.length === 0) {
       return;
     }

@@ -16,7 +16,6 @@ function* addUserAnswer(action) {
       action.payload.requestBody,
     );
 
-    console.log("===>response", response);
     const { status, statusText, data = [], id = data._id } = response || {};
     if (status === 200) {
       // successAlert("Successfully added answers.");

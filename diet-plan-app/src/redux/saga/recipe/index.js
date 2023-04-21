@@ -15,7 +15,6 @@ function* getRecipeDataRequest(action) {
       services.getRecipeRequest,
       action.payload.userId,
     );
-    console.log("===>response", response);
     const { status, statusText, data = [] } = response || {};
     if (status === 200) {
       // successAlert("Successfully added answers.");
@@ -36,7 +35,6 @@ function* genrateMealPdfRequest(action) {
       services.genrateMealPdf,
       action.payload.mealData,
     );
-    console.log("===>response", response);
     const { status, statusText, data = [] } = response || {};
     if (status === 200) {
       successAlert("Successfully");
@@ -80,7 +78,6 @@ function* genrateMealRecipeRequest(action) {
 
   try {
     const response = yield call(services.genrateMealRecipePlan, meal);
-    console.log("===>responsegenrateMealRecipePlan", response);
     const { status, statusText, data = [] } = response || {};
     if (status === 200) {
       // successAlert("Successfully added answers.");

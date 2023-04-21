@@ -26,8 +26,6 @@ const SlickSlider = () => {
   const navigationType = useNavigationType();
   const [isSubmitActive, setIsSubmitActive] = useState(false);
 
-  console.log("====>navigationType", navigationType);
-
   // useEffect(() => {
   //   // && history.location.pathname === "any specific path")
   //   if (navigationType === "POP" && location.pathname === "/detail") {
@@ -66,7 +64,14 @@ const SlickSlider = () => {
     if (value === quesAnswArr.length - 1) {
       myRef.current.focus();
     }
-    setAnswers({ ...answers, [type]: option.toLowerCase() });
+    if (type === "name") {
+      setAnswers({
+        ...answers,
+        [type]: option.trimStart(),
+      });
+    } else {
+      setAnswers({ ...answers, [type]: option.toLowerCase() });
+    }
     setError("");
     if (ansType === "input") {
       return;
@@ -185,7 +190,14 @@ const SlickSlider = () => {
   const handleSubmit = () => {
     if (answers.medicalHistory !== undefined && !isSubmitActive) {
       setIsSubmitActive(true);
-      dispatch(addUserAnswerRequest(answers));
+      const convertLowerCaseObj = Object.keys(answers).reduce((acc, key) => {
+        acc[key] =
+          typeof answers[key] === "string"
+            ? answers[key].toLowerCase()
+            : answers[key];
+        return acc;
+      }, {});
+      dispatch(addUserAnswerRequest(convertLowerCaseObj));
       navigate("/recipe");
     } else {
       setError(`Please select your medical history`);
@@ -317,14 +329,16 @@ const SlickSlider = () => {
               quesAnswArr.map((item, questionIndex) => {
                 return (
                   <div
-                    className={`row align-items-center slides ${value === questionIndex ? "active-slide" : ""
-                      }`}
+                    className={`row align-items-center slides ${
+                      value === questionIndex ? "active-slide" : ""
+                    }`}
                   >
                     <div className="col-lg-6 col-sm-12 col-md-8 p-0">
                       {value === questionIndex && (
                         <div className="slider-content animate__backInUp animate__animated">
-                          <h5 className="steps">{`Step 0${questionIndex + 1
-                            }`}</h5>
+                          <h5 className="steps">{`Step 0${
+                            questionIndex + 1
+                          }`}</h5>
                           <h2>{item.question}</h2>
                           <>
                             {item?.description?.map((des) => {
@@ -348,8 +362,8 @@ const SlickSlider = () => {
                                   item?.type === "name"
                                     ? answers?.name
                                     : item?.type === "weight"
-                                      ? answers.weight
-                                      : answers?.height
+                                    ? answers.weight
+                                    : answers?.height
                                 }
                                 onChange={(e) => {
                                   let value1 = e.target.value;
@@ -402,11 +416,11 @@ const SlickSlider = () => {
                             onClick={
                               value === quesAnswArr.length - 1
                                 ? () => {
-                                  handleSubmit();
-                                }
+                                    handleSubmit();
+                                  }
                                 : (e) => {
-                                  handleNextButton(item);
-                                }
+                                    handleNextButton(item);
+                                  }
                             }
                           >
                             {value === quesAnswArr.length - 1
@@ -418,15 +432,22 @@ const SlickSlider = () => {
                     </div>
                     <div className="col-lg-6 col-sm-12  col-md-4 p-0">
                       {
-                        value === 2 ? <img
-                          className="slider-img hot-coffee-img"
-                          src={hotCoffee}
-                        /> : value === 3 ? <img
-                          className="slider-img hot-coffee-img"
-                          src={cup} /> : <img
-                          className="slider-img"
-                          src={item.gif ? item.gif : Fruits}
-                        />
+                        value === 2 ? (
+                          <img
+                            className="slider-img hot-coffee-img"
+                            src={hotCoffee}
+                          />
+                        ) : value === 3 ? (
+                          <img
+                            className="slider-img hot-coffee-img"
+                            src={cup}
+                          />
+                        ) : (
+                          <img
+                            className="slider-img"
+                            src={item.gif ? item.gif : Fruits}
+                          />
+                        )
                         // <img
                         //   className="slider-img"
                         //   width="100%"

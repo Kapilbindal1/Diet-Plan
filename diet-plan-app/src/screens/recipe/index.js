@@ -16,11 +16,7 @@ import { dietNotes } from "../../utils/const";
 import ErrorMsg from "../../component/errorMsg";
 
 export const Recipe = () => {
-  // const [recipeData, setRecipeData] = useState({});
-
-  const [pdfurl1, setPdfUrl] = useState("");
   const [isModal, setIsModal] = useState(false);
-  const [isDisclaimer, setIsDisclaimer] = useState(false);
   const [isRecipeDetail, setIsRecipeDetail] = useState(false);
   const [mealRecipeData, setMealRecipeData] = useState({});
   const [mealRecipePlanData, setMealRecipePlanData] = useState({});
@@ -34,50 +30,6 @@ export const Recipe = () => {
   const isLoading = useSelector((state) => state.user.isLoading);
   const userId = useSelector((state) => state.user.userId);
   const isError = useSelector((state) => state.user.isError);
-  // useEffect(() => {
-  //   if (!!userId)
-  //     dispatch(
-  //       getRecipeData(
-  //         userId,
-  //         (res) => {
-  //           console.log("===>res", res);
-  //           if (Object.keys(res).length > 0) {
-  //             setIsLoading(false);
-  //             setRecipeData(res);
-  //           }
-  //         },
-  //         (e) => {
-  //           setIsLoading(false);
-  //           console.log("===>e", e);
-  //         },
-  //       ),
-  //     );
-  // }, [userId]);
-
-  useEffect(() => {
-    setIsDisclaimer(true);
-  }, []);
-
-  // useEffect(() => {
-  //   if (Object.keys(recipeData).length > 0)
-  //     dispatch(
-  //       genratePdf(
-  //         recipeData,
-  //         (base64Url1) => {
-  //           const pdfData = atob(base64Url1);
-  //           const byteArray = new Uint8Array(
-  //             pdfData.split("").map((char) => char.charCodeAt(0)),
-  //           );
-  //           const pdfBlob = new Blob([byteArray], { type: "application/pdf" });
-  //           const pdfUrl = URL.createObjectURL(pdfBlob);
-  //           setPdfUrl(pdfUrl);
-  //         },
-  //         (e) => {
-  //           console.log(e);
-  //         },
-  //       ),
-  //     );
-  // }, [Object.keys(recipeData).length]);
 
   const handlePdfWithEmail = () => {
     setIsModal(true);
@@ -117,7 +69,6 @@ export const Recipe = () => {
           based on your input data. We strive to provide the best possible
           recommendations, but we cannot guarantee the accuracy, completeness,
           or usefulness of any information provided.
-          {/* <img src={close} alt="close" onClick={() => setIsDisclaimer(false)} /> */}
         </p>
         <div className="container">
           <div className="d-flex px-3 flex-wrap mt-4 justify-content-between align-items-center">

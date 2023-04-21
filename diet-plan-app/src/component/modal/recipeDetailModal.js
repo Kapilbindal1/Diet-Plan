@@ -51,8 +51,7 @@ const RecipeDetailModalPop = ({
   isRecipeLoader,
   setMealRecipePlanData,
 }) => {
-  useEffect(() => { }, [mealRecipePlanData]);
-  console.log("===>mealRecipeData", mealRecipePlanData);
+  useEffect(() => {}, [mealRecipePlanData]);
 
   const handleModalClose = () => {
     setMealRecipePlanData({});
