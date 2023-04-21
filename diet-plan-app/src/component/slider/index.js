@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 
 import { useDispatch } from "react-redux";
-import { useNavigate, useLocation, useNavigationType } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import "../../assets/style/slider.scss";
 import { detail } from "../../utils/const";
 import Fruits from "../../assets/gif/fruits.gif";
@@ -21,17 +21,11 @@ const SlickSlider = () => {
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const location = useLocation();
+
   const myRef = useRef(null);
-  const navigationType = useNavigationType();
+
   const [isSubmitActive, setIsSubmitActive] = useState(false);
 
-  // useEffect(() => {
-  //   // && history.location.pathname === "any specific path")
-  //   if (navigationType === "POP" && location.pathname === "/detail") {
-  //     // history.replace(history.location.pathname /* the new state */);
-  //   }
-  // }, [navigationType]);
   useEffect(() => {
     dispatch(userLogout());
   }, []);
@@ -209,41 +203,6 @@ const SlickSlider = () => {
     return () => document.removeEventListener("keypress", handleKeyPress);
   }, [value]);
 
-  // const handleKeyPress = (e) => {
-  //   let obj = quesAnswArr[valueRef.current];
-  //   let str = "";
-  //   if (obj?.option_type === "list" && obj?.answer_type === null) {
-  //     if (e.key === "a") {
-  //       str = obj.answers[0].option;
-  //       onHandleAnswers(obj.type, str, null, valueRef.current, 0);
-  //       str = "";
-  //     } else if (e.key === "b") {
-  //       str = obj.answers[1].option;
-  //       onHandleAnswers(obj.type, str, null, valueRef.current, 1);
-  //       str = "";
-  //     } else if (e.key === "c") {
-  //       str = obj.answers[2].option;
-  //       onHandleAnswers(obj.type, str, null, valueRef.current, 2);
-  //       str = "";
-  //     } else if (e.key === "d") {
-  //       str = obj.answers[3].option;
-  //       onHandleAnswers(obj.type, str, null, valueRef.current, 3);
-  //       str = "";
-  //     } else if (e.key === "e") {
-  //       str = obj.answers[4].option;
-  //       onHandleAnswers(obj.type, str, null, valueRef.current, 4);
-  //       str = "";
-  //     } else if (e.key === "f") {
-  //       str = obj.answers[5].option;
-  //       onHandleAnswers(obj.type, str, null, valueRef.current, 5);
-  //       str = "";
-  //     } else if (e.key === "g") {
-  //       str = obj.answers[6].option;
-  //       onHandleAnswers(obj.type, str, null, valueRef.current, 6);
-  //       str = "";
-  //     }
-  //   }
-  // };
   const handleKeyPress = (e) => {
     let obj = quesAnswArr[valueRef.current];
     if (obj?.option_type === "list" && obj?.answer_type === null) {
