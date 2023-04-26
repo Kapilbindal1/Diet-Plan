@@ -11,6 +11,7 @@ function App() {
     if (Object.keys(recipeData).length === 0) {
       navigate("/");
     }
+    console.log("check");
   }, []);
 
   return (
