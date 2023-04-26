@@ -1,0 +1,238 @@
+@import "variable.scss";
+@import "bootstrap/dist/css/bootstrap.min.css";
+@import "./diet.scss";
+@import "./common.scss";
+html {
+  scroll-behavior: smooth;
+}
+body {
+  font-family: "Inter", sans-serif;
+}
+.slick-slide img {
+  margin: auto;
+}
+.logo-header {
+  padding: 20px 90px;
+  @media all and (max-width: $tablet) {
+    padding: 2rem;
+    text-align: center;
+  }
+}
+.slider-wraper {
+  padding: 2rem;
+  height: 80vh;
+  position: relative;
+  transition: all 600ms ease 0s;
+  @media (max-height: 600px) {
+    height: 74vh;
+    padding: 0px 2rem;
+  }
+  @media all and (max-width: $tablet) {
+    height: unset;
+    padding: 0;
+  }
+
+  .slider-content {
+    background: #ffffff;
+    box-shadow: 0px 0px 43px 8px rgba(0, 0, 0, 0.06);
+    border-radius: 20px;
+    padding: 2rem 3rem;
+    transition: all 600ms ease 0s;
+    @media all and (max-width: $tablet) {
+      padding: 1rem;
+      line-height: 25px;
+    }
+    .steps {
+      font-weight: 700;
+      font-size: 20px;
+      line-height: 30px;
+      color: rgba(0, 0, 0, 0.24);
+      margin-bottom: 10px;
+      @media all and (max-width: $tablet) {
+        margin: 0;
+        font-size: 15px;
+      }
+    }
+    h2 {
+      font-family: "Inter";
+      font-style: normal;
+      font-weight: 700;
+      font-size: 23px;
+      line-height: 37px;
+      color: #000000;
+      @media (max-width: $xxLDesktop) {
+        font-size: 18px;
+        line-height: unset;
+      }
+      @media all and (max-width: $tablet) {
+        font-size: 1rem;
+        line-height: 25px;
+      }
+    }
+    .primary-solid {
+      margin-top: 30px;
+    }
+    .primary-solid:focus-visible {
+      outline: none;
+    }
+    .description {
+      font-weight: 500;
+      font-size: 18px;
+      line-height: 27px;
+      color: #171717;
+      @media (max-width: $xxLDesktop) {
+        line-height: unset;
+        font-size: 14px;
+      }
+      @media (max-width: $tablet) {
+        font-size: 13px;
+        line-height: 20px;
+      }
+    }
+    .answer-input {
+      font-weight: 500;
+      line-height: 27px;
+      color: #000000;
+      opacity: 0.6;
+      border: none;
+      border-bottom: 1px solid #a8a8a8;
+      box-shadow: none;
+      background-color: transparent;
+      margin-top: 15px;
+      font-size: 14px;
+      width: 100%;
+      &::-webkit-inner-spin-button,
+      &::-webkit-calendar-picker-indicator {
+        display: none;
+        -webkit-appearance: none;
+      }
+      &:focus {
+        outline: none;
+        box-shadow: none;
+      }
+    }
+  }
+  .options {
+    border: 1px solid #a8a8a8;
+    border-radius: 4px;
+    font-family: "Inter";
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 27px;
+    padding: 8px 6px;
+    color: #171717;
+    cursor: pointer;
+    position: relative;
+    padding-left: 50px;
+    &:hover {
+      border: 1px solid $theme-color;
+      color: $theme-color;
+      .option {
+        background: $theme-color;
+        border: 1px solid $theme-color;
+        color: #ffffff;
+      }
+    }
+    @media all and (max-width: $tablet) {
+      font-size: 0.8rem;
+      display: flex;
+      align-items: center;
+    }
+    &.active {
+      border: 1px solid $theme-color;
+      color: $theme-color;
+      .option {
+        background: $theme-color;
+        border: 1px solid $theme-color;
+        color: #ffffff;
+      }
+    }
+    .option {
+      background: #f8f8fa;
+      border: 1px solid #a8a8a8;
+      border-radius: 2px;
+      font-style: normal;
+      font-weight: 500;
+      font-size: 16px;
+      line-height: 27px;
+      color: #171717;
+      display: inline-block;
+      width: 32px;
+      height: 30px;
+      text-align: center;
+      margin-right: 13px;
+      position: absolute;
+      left: 7px;
+    }
+  }
+}
+.navigation {
+  position: fixed;
+  right: 10%;
+  bottom: 4%;
+  background: #ffffff;
+  box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 3px;
+  margin-top: 15px;
+  margin-right: 0;
+  margin-left: auto;
+  @media (max-width: $tablet) {
+    position: unset;
+    width: fit-content;
+  }
+  button {
+    border: none;
+    background-color: white;
+  }
+}
+.slides {
+  display: none;
+  width: 100%;
+  .slider-img {
+    max-width: 100%;
+    width: 80%;
+    margin-left: 50px;
+    &.hot-coffee-img {
+      width: 55%;
+    }
+    @media (max-width: $tablet) {
+      display: none;
+    }
+  }
+  @media (max-width: $tablet) {
+    margin: 0;
+  }
+}
+.active-slide {
+  display: inline-flex;
+  @media (max-width: $tablet) {
+    display: block;
+  }
+}
+.error-msg {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 80vh;
+  text-align: center;
+}
+@media screen and (device-aspect-ratio: 9/16) {
+  select,
+  textarea,
+  input[type="text"],
+  input[type="password"],
+  input[type="datetime"],
+  input[type="datetime-local"],
+  input[type="date"],
+  input[type="month"],
+  input[type="time"],
+  input[type="week"],
+  input[type="number"],
+  input[type="email"],
+  input[type="tel"],
+  input[type="url"] {
+    font-size: 16px;
+  }
+}

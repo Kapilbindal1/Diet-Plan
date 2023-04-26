@@ -5,11 +5,22 @@ import { RouterProvider } from "react-router-dom";
 import { router } from "./route";
 import reportWebVitals from "./reportWebVitals";
 
+import { Provider } from "react-redux";
+import { PersistGate } from "redux-persist/lib/integration/react";
+import { store, persistor } from "./redux/store";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <React.StrictMode>
-    <RouterProvider router={router} />
-  </React.StrictMode>,
+  // <React.StrictMode>
+  <Provider store={store}>
+    <PersistGate loading={null} persistor={persistor}>
+      <RouterProvider router={router} />
+      <ToastContainer />
+    </PersistGate>
+  </Provider>,
+  // </React.StrictMode>,
 );
 
 // If you want to start measuring performance in your app, pass a function
