@@ -54,13 +54,7 @@ const SlickSlider = () => {
     handleNextButton(quesAnswArr[value]);
   };
 
-  const onHandleAnswers = (
-    type,
-    option,
-    ansType,
-    questionIndex,
-    answerIndex,
-  ) => {
+  const onHandleAnswers = (type, option, ansType, questionIndex, answerIndex) => {
     if (value === quesAnswArr.length - 1) {
       myRef.current.focus();
     }
@@ -113,28 +107,15 @@ const SlickSlider = () => {
         }
       });
     } else if (item.option_type === null && item.answer_type === "input") {
-      if (
-        answers.height !== undefined &&
-        answers.height !== "" &&
-        item.type !== "weight"
-      ) {
+      if (answers.height !== undefined && answers.height !== "" && item.type !== "weight") {
         if (Number(answers.height) >= 150 && Number(answers.height) <= 199) {
           check = true;
         }
-      } else if (
-        answers.weight !== undefined &&
-        answers.weight !== "" &&
-        item.type !== "height"
-      ) {
+      } else if (answers.weight !== undefined && answers.weight !== "" && item.type !== "height") {
         if (Number(answers.weight) >= 38 && Number(answers.weight) <= 180) {
           check = true;
         }
-      } else if (
-        answers.name !== undefined &&
-        answers.name !== "" &&
-        item.type !== "height" &&
-        item.type !== "weight"
-      ) {
+      } else if (answers.name !== undefined && answers.name !== "" && item.type !== "height" && item.type !== "weight") {
         check = true;
       }
     } else {
@@ -150,19 +131,13 @@ const SlickSlider = () => {
     } else {
       if (item.answer_type === "input") {
         if (item.type === "weight") {
-          if (
-            answers?.weight?.length > 0 &&
-            !(Number(answers.weight) >= 38 && Number(answers.weight) <= 180)
-          ) {
+          if (answers?.weight?.length > 0 && !(Number(answers.weight) >= 38 && Number(answers.weight) <= 180)) {
             setError(`Please enter a number between 38 and 180`);
           } else {
             setError(`Please enter your weight`);
           }
         } else if (item.type === "height") {
-          if (
-            answers?.height?.length > 0 &&
-            !(Number(answers.height) >= 150 && Number(answers.height) <= 199)
-          ) {
+          if (answers?.height?.length > 0 && !(Number(answers.height) >= 150 && Number(answers.height) <= 199)) {
             setError(`Please enter a number between 150 and 199`);
           } else {
             setError(`Please enter your height`);
@@ -171,8 +146,7 @@ const SlickSlider = () => {
           setError(`Please enter your name`);
         }
       } else {
-        if (item.type === "fitnessGoals")
-          setError(`Please select your health goal`);
+        if (item.type === "fitnessGoals") setError(`Please select your health goal`);
         else if (item.type === "dietaryPreference") {
           setError(`Please select your dietary preference`);
         } else {
@@ -191,10 +165,7 @@ const SlickSlider = () => {
     if (answers.medicalHistory !== undefined && !isSubmitActive) {
       setIsSubmitActive(true);
       const convertLowerCaseObj = Object.keys(answers).reduce((acc, key) => {
-        acc[key] =
-          typeof answers[key] === "string"
-            ? answers[key].toLowerCase()
-            : answers[key];
+        acc[key] = typeof answers[key] === "string" ? answers[key].toLowerCase() : answers[key];
         return acc;
       }, {});
       dispatch(addUserAnswerRequest(convertLowerCaseObj));
@@ -271,9 +242,6 @@ const SlickSlider = () => {
           index = 6;
           break;
         default:
-          if (e.code !== "Enter") {
-            setError("Invalid key pressed");
-          }
           return;
       }
       if (index !== -1 && index < obj.answers.length) {
@@ -297,8 +265,7 @@ const SlickSlider = () => {
 
   const handleClick2 = (e, isInput, questionIndex) => {
     if (e.key === "Enter") {
-      if (questionIndex === 0 || questionIndex === 5 || questionIndex === 6)
-        handleNextButton(quesAnswArr[value]);
+      if (questionIndex === 0 || questionIndex === 5 || questionIndex === 6) handleNextButton(quesAnswArr[value]);
     }
   };
 
@@ -328,17 +295,11 @@ const SlickSlider = () => {
             {quesAnswArr.length > 0 &&
               quesAnswArr.map((item, questionIndex) => {
                 return (
-                  <div
-                    className={`row align-items-center slides ${
-                      value === questionIndex ? "active-slide" : ""
-                    }`}
-                  >
+                  <div className={`row align-items-center slides ${value === questionIndex ? "active-slide" : ""}`}>
                     <div className="col-lg-6 col-sm-12 col-md-8 p-0">
                       {value === questionIndex && (
                         <div className="slider-content animate__backInUp animate__animated">
-                          <h5 className="steps">{`Step 0${
-                            questionIndex + 1
-                          }`}</h5>
+                          <h5 className="steps">{`Step 0${questionIndex + 1}`}</h5>
                           <h2>{item.question}</h2>
                           <>
                             {item?.description?.map((des) => {
@@ -358,54 +319,23 @@ const SlickSlider = () => {
                                 onKeyDown={(e) => handleClick2(e, true, value)}
                                 className="answer-input"
                                 placeholder="Type your answer here..."
-                                value={
-                                  item?.type === "name"
-                                    ? answers?.name
-                                    : item?.type === "weight"
-                                    ? answers.weight
-                                    : answers?.height
-                                }
+                                value={item?.type === "name" ? answers?.name : item?.type === "weight" ? answers.weight : answers?.height}
                                 onChange={(e) => {
                                   let value1 = e.target.value;
-                                  onHandleAnswers(
-                                    item.type,
-                                    value1,
-                                    item?.answer_type,
-                                    null,
-                                    null,
-                                  );
+                                  onHandleAnswers(item.type, value1, item?.answer_type, null, null);
                                 }}
                               />
                             )}
                           </div>
                           {item.answers?.map((item2, answerIndex) => {
                             return (
-                              <h6
-                                className={
-                                  item2.isSelected
-                                    ? "options active"
-                                    : "options"
-                                }
-                                onClick={() =>
-                                  onHandleAnswers(
-                                    item.type,
-                                    item2.option,
-                                    null,
-                                    questionIndex,
-                                    answerIndex,
-                                  )
-                                }
-                              >
-                                <span className="option">
-                                  {getAlaphabet(answerIndex)}
-                                </span>
+                              <h6 className={item2.isSelected ? "options active" : "options"} onClick={() => onHandleAnswers(item.type, item2.option, null, questionIndex, answerIndex)}>
+                                <span className="option">{getAlaphabet(answerIndex)}</span>
                                 <span>{item2.option}</span>
                               </h6>
                             );
                           })}
-                          <div style={{ color: "red", fontSize: 14 }}>
-                            {error}
-                          </div>
+                          <div style={{ color: "red", fontSize: 14 }}>{error}</div>
                           <button
                             ref={myRef}
                             className="primary-solid"
@@ -423,9 +353,7 @@ const SlickSlider = () => {
                                   }
                             }
                           >
-                            {value === quesAnswArr.length - 1
-                              ? "Submit"
-                              : "Next"}
+                            {value === quesAnswArr.length - 1 ? "Submit" : "Next"}
                           </button>
                         </div>
                       )}
@@ -433,20 +361,11 @@ const SlickSlider = () => {
                     <div className="col-lg-6 col-sm-12  col-md-4 p-0">
                       {
                         value === 2 ? (
-                          <img
-                            className="slider-img hot-coffee-img"
-                            src={hotCoffee}
-                          />
+                          <img className="slider-img hot-coffee-img" src={hotCoffee} />
                         ) : value === 3 ? (
-                          <img
-                            className="slider-img hot-coffee-img"
-                            src={cup}
-                          />
+                          <img className="slider-img hot-coffee-img" src={cup} />
                         ) : (
-                          <img
-                            className="slider-img"
-                            src={item.gif ? item.gif : Fruits}
-                          />
+                          <img className="slider-img" src={item.gif ? item.gif : Fruits} />
                         )
                         // <img
                         //   className="slider-img"
@@ -466,30 +385,14 @@ const SlickSlider = () => {
                 handleSlidePrev();
               }}
             >
-              {value === 0 ? (
-                <img
-                  src={prev}
-                  alt="prev"
-                  style={{ transform: "rotate(180deg)" }}
-                />
-              ) : (
-                <img src={next} alt="next" />
-              )}
+              {value === 0 ? <img src={prev} alt="prev" style={{ transform: "rotate(180deg)" }} /> : <img src={next} alt="next" />}
             </button>
             <button
               onClick={() => {
                 handleSlideNext();
               }}
             >
-              {value === quesAnswArr.length - 1 ? (
-                <img src={prev} alt="prev" />
-              ) : (
-                <img
-                  src={next}
-                  alt="next"
-                  style={{ transform: "rotate(180deg)" }}
-                />
-              )}
+              {value === quesAnswArr.length - 1 ? <img src={prev} alt="prev" /> : <img src={next} alt="next" style={{ transform: "rotate(180deg)" }} />}
             </button>
           </div>
         </div>
